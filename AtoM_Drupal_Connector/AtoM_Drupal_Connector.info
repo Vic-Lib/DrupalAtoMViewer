@@ -1,0 +1,7 @@
+name = "AtoM Drupal Connector"
+description = "Gives Views the ability to see AtoM database Fonds, Series, and Files as tables if the AtoM databse is connected in settings.php."
+dependencies[] = views
+package = "Views"
+core = 7.x
+
+
