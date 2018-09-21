@@ -10,6 +10,31 @@ Clayfreeman came up with it and I stripped out everything except the MYSQL conne
 TODO--- Re-write this section:
 
 
+Installation
+------------
+Edit your sites settings.php file to include Move this directory into your Drupal module folder and enable it.
+
+This is the default database connection that is in Drupal:
+  $databases['default']['default'] = array(
+     'driver' => 'mysql',
+     'database' => '########',
+     'username' => '########',
+     'password' => '########',
+     'host' => 'localhost',
+     'prefix' => '',
+   );
+
+To allow the module to read you have add a second database connection.  Make sure the user has permission to read the AtoM sites database:
+ $databases['atomDatabase']['default'] = array(
+     'driver' => 'mysql',
+     'database' => '########',
+     'username' => '########',
+     'password' => '########',
+     'host' => 'localhost',
+     'prefix' => '',
+   );
+
+
 Description
 -----------
 Views Database Connector is a powerful module that gives Views full access to
@@ -50,3 +75,8 @@ When you add a new view, you should now be able to pick a new entry in the
 will be prefixed by [VDC]. After you select one of these options and create
 your view, the first column in the table will be added as the first field. You
 should also be able to add the other columns as fields using the "Add" button.
+
+Demo
+----
+I have exported our view that we use, it's not quite done yet, but you can load it if you are so inclined.  It is the Example.view.txt file and is not needed otherwise.
+
