@@ -203,6 +203,7 @@ function AtoM_Drupal_Connector_views_data() {
   $data['event']['table']['join'] = array(
     'information_object' => array(
       'left_field' => 'id',
+      //This doesn't help 'type' => 'inner',
       'field' => 'object_id',
     ),
   );
