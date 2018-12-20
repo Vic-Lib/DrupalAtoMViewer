@@ -1,3 +1,4 @@
+
 $view = new view();
 $view->name = 'atomdrupalconnector';
 $view->description = '';
@@ -141,27 +142,32 @@ $handler->display->display_options['fields']['extent_and_medium']['element_label
 $handler->display->display_options['fields']['physical_characteristics']['id'] = 'physical_characteristics';
 $handler->display->display_options['fields']['physical_characteristics']['table'] = 'information_object_i18n';
 $handler->display->display_options['fields']['physical_characteristics']['field'] = 'physical_characteristics';
+$handler->display->display_options['fields']['physical_characteristics']['alter']['nl2br'] = TRUE;
 /* Field: AtoMitems: access conditions */
 $handler->display->display_options['fields']['access_conditions']['id'] = 'access_conditions';
 $handler->display->display_options['fields']['access_conditions']['table'] = 'information_object_i18n';
 $handler->display->display_options['fields']['access_conditions']['field'] = 'access_conditions';
+$handler->display->display_options['fields']['access_conditions']['alter']['nl2br'] = TRUE;
 $handler->display->display_options['fields']['access_conditions']['element_label_type'] = 'h2';
 /* Field: AtoMitems: History */
 $handler->display->display_options['fields']['history']['id'] = 'history';
 $handler->display->display_options['fields']['history']['table'] = 'actor_i18n';
 $handler->display->display_options['fields']['history']['field'] = 'history';
 $handler->display->display_options['fields']['history']['label'] = 'Bibliographic History';
+$handler->display->display_options['fields']['history']['alter']['nl2br'] = TRUE;
 $handler->display->display_options['fields']['history']['element_label_type'] = 'h2';
 /* Field: AtoMitems: related units of description */
 $handler->display->display_options['fields']['related_units_of_description']['id'] = 'related_units_of_description';
 $handler->display->display_options['fields']['related_units_of_description']['table'] = 'information_object_i18n';
 $handler->display->display_options['fields']['related_units_of_description']['field'] = 'related_units_of_description';
+$handler->display->display_options['fields']['related_units_of_description']['alter']['nl2br'] = TRUE;
 $handler->display->display_options['fields']['related_units_of_description']['element_label_type'] = 'h2';
 $handler->display->display_options['fields']['related_units_of_description']['hide_empty'] = TRUE;
 /* Field: AtoMitems: Scope and Content */
 $handler->display->display_options['fields']['scope_and_content']['id'] = 'scope_and_content';
 $handler->display->display_options['fields']['scope_and_content']['table'] = 'information_object_i18n';
 $handler->display->display_options['fields']['scope_and_content']['field'] = 'scope_and_content';
+$handler->display->display_options['fields']['scope_and_content']['alter']['nl2br'] = TRUE;
 $handler->display->display_options['fields']['scope_and_content']['element_label_type'] = 'h2';
 $handler->display->display_options['fields']['scope_and_content']['element_label_colon'] = FALSE;
 /* Field: Global: View */
@@ -176,20 +182,17 @@ $handler->display->display_options['fields']['view_2']['hide_empty'] = TRUE;
 $handler->display->display_options['fields']['view_2']['view'] = 'atomdrupalconnector';
 $handler->display->display_options['fields']['view_2']['display'] = 'serieslist_block';
 $handler->display->display_options['fields']['view_2']['arguments'] = '[!id]';
-/* Field: AtoMitems: access conditions */
-$handler->display->display_options['fields']['access_conditions_1']['id'] = 'access_conditions_1';
-$handler->display->display_options['fields']['access_conditions_1']['table'] = 'information_object_i18n';
-$handler->display->display_options['fields']['access_conditions_1']['field'] = 'access_conditions';
-$handler->display->display_options['fields']['access_conditions_1']['element_label_type'] = 'h2';
 /* Field: AtoMitems: accrurals */
 $handler->display->display_options['fields']['accruals']['id'] = 'accruals';
 $handler->display->display_options['fields']['accruals']['table'] = 'information_object_i18n';
 $handler->display->display_options['fields']['accruals']['field'] = 'accruals';
+$handler->display->display_options['fields']['accruals']['alter']['nl2br'] = TRUE;
 $handler->display->display_options['fields']['accruals']['element_label_type'] = 'h2';
 /* Field: AtoMitems: finding aids */
 $handler->display->display_options['fields']['finding_aids']['id'] = 'finding_aids';
 $handler->display->display_options['fields']['finding_aids']['table'] = 'information_object_i18n';
 $handler->display->display_options['fields']['finding_aids']['field'] = 'finding_aids';
+$handler->display->display_options['fields']['finding_aids']['alter']['nl2br'] = TRUE;
 $handler->display->display_options['fields']['finding_aids']['element_label_type'] = 'h2';
 $handler->display->display_options['fields']['finding_aids']['hide_empty'] = TRUE;
 /* Field: AtoMitems: physical characteristics */
@@ -222,6 +225,7 @@ $handler->display->display_options['fields']['sources']['id'] = 'sources';
 $handler->display->display_options['fields']['sources']['table'] = 'information_object_i18n';
 $handler->display->display_options['fields']['sources']['field'] = 'sources';
 $handler->display->display_options['fields']['sources']['label'] = 'Immediate sources of acquisition?';
+$handler->display->display_options['fields']['sources']['element_label_type'] = 'h2';
 $handler->display->display_options['fields']['sources']['empty'] = 'Nothing?';
 $handler->display->display_options['fields']['sources']['hide_alter_empty'] = FALSE;
 $handler->display->display_options['defaults']['arguments'] = FALSE;
@@ -282,17 +286,13 @@ $handler->display->display_options['field_config'] = array(
     'merge_option' => 'first_value',
     'separator' => ', ',
   ),
-  'access_conditions_1' => array(
-    'merge_option' => 'merge_unique',
-    'separator' => ', ',
-  ),
   'accruals' => array(
     'merge_option' => 'merge_unique',
     'separator' => ', ',
   ),
   'finding_aids' => array(
     'merge_option' => 'merge_unique',
-    'separator' => ', ',
+    'separator' => ' <BR> ',
   ),
   'physical_characteristics_1' => array(
     'merge_option' => 'merge_unique',
@@ -404,26 +404,32 @@ $handler->display->display_options['fields']['extent_and_medium']['id'] = 'exten
 $handler->display->display_options['fields']['extent_and_medium']['table'] = 'information_object_i18n';
 $handler->display->display_options['fields']['extent_and_medium']['field'] = 'extent_and_medium';
 $handler->display->display_options['fields']['extent_and_medium']['label'] = 'Extent';
+$handler->display->display_options['fields']['extent_and_medium']['alter']['nl2br'] = TRUE;
 $handler->display->display_options['fields']['extent_and_medium']['element_label_type'] = 'h2';
 $handler->display->display_options['fields']['extent_and_medium']['element_label_colon'] = FALSE;
 /* Field: AtoMitems: Scope and Content */
 $handler->display->display_options['fields']['scope_and_content']['id'] = 'scope_and_content';
 $handler->display->display_options['fields']['scope_and_content']['table'] = 'information_object_i18n';
 $handler->display->display_options['fields']['scope_and_content']['field'] = 'scope_and_content';
+$handler->display->display_options['fields']['scope_and_content']['alter']['nl2br'] = TRUE;
 $handler->display->display_options['fields']['scope_and_content']['element_label_type'] = 'h2';
 /* Field: AtoMitems: Note 18n Text */
 $handler->display->display_options['fields']['content_1']['id'] = 'content_1';
 $handler->display->display_options['fields']['content_1']['table'] = 'note_i18n';
 $handler->display->display_options['fields']['content_1']['field'] = 'content';
+$handler->display->display_options['fields']['content_1']['label'] = 'General Notes';
+$handler->display->display_options['fields']['content_1']['alter']['nl2br'] = TRUE;
 $handler->display->display_options['fields']['content_1']['element_label_type'] = 'h2';
 /* Field: AtoMitems: related units of description */
 $handler->display->display_options['fields']['related_units_of_description']['id'] = 'related_units_of_description';
 $handler->display->display_options['fields']['related_units_of_description']['table'] = 'information_object_i18n';
 $handler->display->display_options['fields']['related_units_of_description']['field'] = 'related_units_of_description';
+$handler->display->display_options['fields']['related_units_of_description']['alter']['nl2br'] = TRUE;
 /* Field: AtoMitems: finding aids */
 $handler->display->display_options['fields']['finding_aids']['id'] = 'finding_aids';
 $handler->display->display_options['fields']['finding_aids']['table'] = 'information_object_i18n';
 $handler->display->display_options['fields']['finding_aids']['field'] = 'finding_aids';
+$handler->display->display_options['fields']['finding_aids']['alter']['nl2br'] = TRUE;
 $handler->display->display_options['fields']['finding_aids']['element_label_colon'] = FALSE;
 $handler->display->display_options['fields']['finding_aids']['hide_empty'] = TRUE;
 /* Field: Global: View */
@@ -441,6 +447,7 @@ $handler->display->display_options['fields']['history']['id'] = 'history';
 $handler->display->display_options['fields']['history']['table'] = 'actor_i18n';
 $handler->display->display_options['fields']['history']['field'] = 'history';
 $handler->display->display_options['fields']['history']['label'] = 'Bibliographic History';
+$handler->display->display_options['fields']['history']['alter']['nl2br'] = TRUE;
 $handler->display->display_options['fields']['history']['element_label_type'] = 'h2';
 $handler->display->display_options['fields']['history']['hide_empty'] = TRUE;
 /* Field: Title of fonds used to generate breadcrumb */
@@ -510,6 +517,10 @@ $handler->display->display_options['arguments']['id']['summary']['format'] = 'de
 $handler->display->display_options['arguments']['id']['summary_options']['items_per_page'] = '25';
 $handler->display->display_options['merge_rows'] = TRUE;
 $handler->display->display_options['field_config'] = array(
+  'level_of_description_id' => array(
+    'merge_option' => 'merge_unique',
+    'separator' => ', ',
+  ),
   'parent_id' => array(
     'merge_option' => 'merge_unique',
     'separator' => ', ',
@@ -519,6 +530,10 @@ $handler->display->display_options['field_config'] = array(
     'separator' => ', ',
   ),
   'identifier' => array(
+    'merge_option' => 'merge_unique',
+    'separator' => ', ',
+  ),
+  'php' => array(
     'merge_option' => 'merge_unique',
     'separator' => ', ',
   ),
@@ -551,7 +566,7 @@ $handler->display->display_options['field_config'] = array(
     'separator' => ', ',
   ),
   'view_1' => array(
-    'merge_option' => 'merge_unique',
+    'merge_option' => 'first_value',
     'separator' => ', ',
   ),
   'history' => array(
@@ -567,7 +582,7 @@ $handler->display->display_options['field_config'] = array(
     'separator' => ', ',
   ),
   'view' => array(
-    'merge_option' => 'merge_unique',
+    'merge_option' => 'first_value',
     'separator' => ', ',
   ),
 );
@@ -879,6 +894,24 @@ $handler->display->display_options['filters']['level_of_description_id']['table'
 $handler->display->display_options['filters']['level_of_description_id']['field'] = 'level_of_description_id';
 $handler->display->display_options['filters']['level_of_description_id']['operator'] = '!=';
 $handler->display->display_options['filters']['level_of_description_id']['value']['value'] = '232';
+$handler->display->display_options['field_config'] = array(
+  'identifier' => array(
+    'merge_option' => 'merge_unique',
+    'separator' => ', ',
+  ),
+  'id' => array(
+    'merge_option' => 'merge_unique',
+    'separator' => ', ',
+  ),
+  'parent_id' => array(
+    'merge_option' => 'merge_unique',
+    'separator' => ', ',
+  ),
+  'title' => array(
+    'merge_option' => 'merge_unique',
+    'separator' => ', ',
+  ),
+);
 $handler->display->display_options['block_description'] = 'SeriesList';
 
 /* Display: In this Collection */
@@ -1019,16 +1052,17 @@ $handler->display->display_options['fields']['title']['label'] = '';
 $handler->display->display_options['fields']['title']['alter']['text'] = 'TITLE';
 $handler->display->display_options['fields']['title']['alter']['make_link'] = TRUE;
 $handler->display->display_options['fields']['title']['alter']['path'] = 'atomdrupalconnector/[id]';
+$handler->display->display_options['fields']['title']['alter']['link_class'] = 'sidebar_active';
 $handler->display->display_options['fields']['title']['element_type'] = 'div';
 $handler->display->display_options['fields']['title']['element_class'] = 'sc_sidebar_header';
 $handler->display->display_options['fields']['title']['element_label_colon'] = FALSE;
 $handler->display->display_options['fields']['title']['hide_empty'] = TRUE;
-/* Field: Global: View */
+/* Field: Series Sidebar View */
 $handler->display->display_options['fields']['view_2']['id'] = 'view_2';
 $handler->display->display_options['fields']['view_2']['table'] = 'views';
 $handler->display->display_options['fields']['view_2']['field'] = 'view';
+$handler->display->display_options['fields']['view_2']['ui_name'] = 'Series Sidebar View';
 $handler->display->display_options['fields']['view_2']['label'] = 'In this collection';
-$handler->display->display_options['fields']['view_2']['element_label_type'] = 'div';
 $handler->display->display_options['fields']['view_2']['element_label_class'] = 'section_navigation sc_sidebar_header sc_sidebar ';
 $handler->display->display_options['fields']['view_2']['hide_empty'] = TRUE;
 $handler->display->display_options['fields']['view_2']['view'] = 'atomdrupalconnector';
@@ -1089,7 +1123,8 @@ $handler->display->display_options['fields']['title']['label'] = '';
 $handler->display->display_options['fields']['title']['alter']['alter_text'] = TRUE;
 $handler->display->display_options['fields']['title']['alter']['text'] = '[identifier]. [title]';
 $handler->display->display_options['fields']['title']['alter']['make_link'] = TRUE;
-$handler->display->display_options['fields']['title']['alter']['path'] = 'atomdrupalconnector/!1/[id]/';
+$handler->display->display_options['fields']['title']['alter']['path'] = 'atomdrupalconnector/!1/[id]';
+$handler->display->display_options['fields']['title']['alter']['link_class'] = 'sidebar_active';
 $handler->display->display_options['fields']['title']['element_type'] = 'div';
 $handler->display->display_options['fields']['title']['element_class'] = 'archives_series_heading';
 $handler->display->display_options['fields']['title']['element_label_colon'] = FALSE;
@@ -1156,7 +1191,6 @@ $handler->display->display_options['fields']['title']['exclude'] = TRUE;
 $handler->display->display_options['fields']['title']['alter']['text'] = 'Suberies [identifier]. [title] ';
 $handler->display->display_options['fields']['title']['alter']['path'] = 'atomdrupalconnector/!1/!2/[id]';
 $handler->display->display_options['fields']['title']['element_type'] = 'div';
-$handler->display->display_options['fields']['title']['element_class'] = 'archives_subseries_heading archives_series_heading show-hide';
 $handler->display->display_options['fields']['title']['element_label_colon'] = FALSE;
 /* Field: AtoMitems: Parent ID */
 $handler->display->display_options['fields']['parent_id']['id'] = 'parent_id';
@@ -1174,7 +1208,8 @@ $handler->display->display_options['fields']['php']['alter']['alter_text'] = TRU
 $handler->display->display_options['fields']['php']['alter']['text'] = 'Subseries [identifier]. [title] ';
 $handler->display->display_options['fields']['php']['alter']['make_link'] = TRUE;
 $handler->display->display_options['fields']['php']['alter']['path'] = 'atomdrupalconnector/!1/!2/[id]';
-$handler->display->display_options['fields']['php']['element_class'] = 'archives_subseries_heading archives_series_heading show-hide';
+$handler->display->display_options['fields']['php']['element_type'] = 'div';
+$handler->display->display_options['fields']['php']['element_class'] = 'archives_subseries_heading show-hide';
 $handler->display->display_options['fields']['php']['element_label_colon'] = FALSE;
 $handler->display->display_options['fields']['php']['use_php_setup'] = 0;
 $handler->display->display_options['fields']['php']['php_value'] = 'if (!preg_match("/.*".$row->parent_id. ".*/",reset($_GET))) {
@@ -1192,7 +1227,9 @@ $handler->display->display_options['fields']['php_1']['alter']['alter_text'] = T
 $handler->display->display_options['fields']['php_1']['alter']['text'] = 'Subseries [identifier]. [title] ';
 $handler->display->display_options['fields']['php_1']['alter']['make_link'] = TRUE;
 $handler->display->display_options['fields']['php_1']['alter']['path'] = 'atomdrupalconnector/!1/!2/[id]';
-$handler->display->display_options['fields']['php_1']['element_class'] = 'archives_subseries_heading archives_series_heading';
+$handler->display->display_options['fields']['php_1']['alter']['link_class'] = 'sidebar_active';
+$handler->display->display_options['fields']['php_1']['element_type'] = 'div';
+$handler->display->display_options['fields']['php_1']['element_class'] = 'archives_subseries_heading';
 $handler->display->display_options['fields']['php_1']['element_label_colon'] = FALSE;
 $handler->display->display_options['fields']['php_1']['use_php_setup'] = 0;
 $handler->display->display_options['fields']['php_1']['php_value'] = 'if (preg_match("/.*".$row->parent_id. ".*/",reset($_GET))) {
