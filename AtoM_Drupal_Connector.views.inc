@@ -285,7 +285,7 @@ function AtoM_Drupal_Connector_views_data() {
     array ("string","edition","edition","the edition"),
     array ("string","extent_and_medium","Extent and Medium","The size and type of the holding"),
     array ("string","archival_history","archival history","The archival history"),
-    array ("string","acquisition","acquisition","The acquisition"),
+    array ("string","acquisition","Imediate Source of Acquisition","The Immediate Source of Acquisition or transfer"),
     array ("string","scope_and_content","Scope and Content","The type of object held"),
     array ("string","appraisal","Appraisal","Appraisal field"),
     array ("string","accruals","accrurals","DESCRIPTION"),
@@ -299,7 +299,7 @@ function AtoM_Drupal_Connector_views_data() {
     array ("string","related_units_of_description","related units of description","DESCRIPTION"),
     array ("string","institution_responsible_identifier","institution responsible identifier","DESCRIPTION"),
     array ("string","rules","rules","DESCRIPTION"),
-    array ("string","sources","sources","DESCRIPTION"),
+    array ("string","sources","sources","This is NOT immediate source of acquisition, but rather sources under descirption control area"),
     array ("string","revision_history","revision history","DESCRIPTION"),
   ));
 
@@ -337,7 +337,7 @@ function AtoM_Drupal_Connector_views_data() {
 
 
   $property_i18n_table = array('property_i18n',array(
-    array ("string","value","Additional Attribute VALUE","Additional attribute for the item"),
+    array ("string","value","Additional Attribute VALUE","Additional attribute for the item, like a category"),
     )
   );
 
