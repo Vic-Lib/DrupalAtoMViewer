@@ -67,6 +67,10 @@ the module. If you later decide to change your database configuration, it is
 advisable to clear cache and cycle the module's state between disabled and
 enabled.
 
+We are using it to display an AtoM collection and have a sidebar module 
+enabled as well.  This is just a JS picker that shows and hides two drupal 
+attachments.
+
 
 Utilization
 -----------
