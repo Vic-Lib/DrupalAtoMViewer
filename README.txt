@@ -69,8 +69,13 @@ enabled.
 
 We are using it to display an AtoM collection and have a sidebar module 
 enabled as well.  This is just a JS picker that shows and hides two drupal 
-attachments.
+attachments.  That script is in another module.  It is only needed for 
+selecting between lists and not part of the core function.
 
+Create a symbolic link to the themes folder (this is the link for our EJ Pratt 
+Library connection).  This is only really for our theme, not needed.
+
+sudo ln -s /var/www/drupal_pratt/sites/all/modules/custom/DrupalAtoMViewer/themeFiles/archives_view /var/www/drupal_pratt/sites/all/themes/pratt_green/
 
 Utilization
 -----------
