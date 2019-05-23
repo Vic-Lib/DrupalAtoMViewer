@@ -7,6 +7,14 @@ thead, th, tbody, td {
 }
 
 
+.fullwidtharchives {
+	width: 620px !important;
+}
+
+.leftalignarchives {
+	text-align: left !important;
+}
+
 /*In this collection header part*/
 .sc_sidebar_header {
   border-top: medium none !important;
