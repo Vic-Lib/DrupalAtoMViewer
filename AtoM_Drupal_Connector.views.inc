@@ -163,7 +163,7 @@ function AtoM_Drupal_Connector_views_data() {
     'field' => 'level_of_description_id',
     'title' => t('AtoMitems'),
     'database' => "atomDatabase",
-    'help' => t('This is the help about the field for some reason'),
+    'help' => t('This is the main AtoM Database'),
     'weight' => -10,
 
   );
