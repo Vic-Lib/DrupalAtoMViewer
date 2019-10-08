@@ -101,4 +101,14 @@
 
 </div><?php /* class view */ ?>
 
+<link type="text/css" rel="stylesheet" href="/sites/all/themes/pratt_green/archives_view/file_descriptions/prototype.css" media="screen">
+<!--
+<script type="text/javascript" src="/sites/all/themes/pratt_green/archives_view/file_descriptions/prototype.js"></script>
+-->
 
+<?php
+drupal_add_js(drupal_get_path('theme', 'pratt_green') . '/archives_view/file_descriptions/prototype.js', array(
+  'type' => 'file',
+  'scope' => 'footer',
+));
+?>
