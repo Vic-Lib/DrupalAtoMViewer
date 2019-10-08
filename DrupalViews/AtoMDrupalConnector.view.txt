@@ -252,6 +252,10 @@ $handler->display->display_options['fields']['value']['id'] = 'value';
 $handler->display->display_options['fields']['value']['table'] = 'property_i18n';
 $handler->display->display_options['fields']['value']['field'] = 'value';
 $handler->display->display_options['fields']['value']['label'] = 'Category';
+$handler->display->display_options['fields']['value']['alter']['text'] = '<?php>
+echo "lala"
+Administrative Bodies, a:1:{i:0;s:2:"en";}
+';
 $handler->display->display_options['fields']['value']['element_type'] = 'p';
 $handler->display->display_options['fields']['value']['element_class'] = 'fullwidtharchives';
 $handler->display->display_options['fields']['value']['element_label_type'] = 'h2';
@@ -301,6 +305,7 @@ $handler->display->display_options['fields']['acquisition']['element_label_colon
 $handler->display->display_options['fields']['location_of_copies']['id'] = 'location_of_copies';
 $handler->display->display_options['fields']['location_of_copies']['table'] = 'information_object_i18n';
 $handler->display->display_options['fields']['location_of_copies']['field'] = 'location_of_copies';
+$handler->display->display_options['fields']['location_of_copies']['label'] = 'Availability of other formats';
 $handler->display->display_options['fields']['location_of_copies']['alter']['nl2br'] = TRUE;
 $handler->display->display_options['fields']['location_of_copies']['element_type'] = 'p';
 $handler->display->display_options['fields']['location_of_copies']['element_class'] = 'fullwidtharchives leftalignarchives';
@@ -351,6 +356,11 @@ $handler->display->display_options['arguments']['id']['summary']['format'] = 'de
 $handler->display->display_options['arguments']['id']['summary_options']['items_per_page'] = '25';
 $handler->display->display_options['defaults']['filter_groups'] = FALSE;
 $handler->display->display_options['defaults']['filters'] = FALSE;
+/* Filter criterion: AtoMitems: Additional Attribute TYPE */
+$handler->display->display_options['filters']['scope']['id'] = 'scope';
+$handler->display->display_options['filters']['scope']['table'] = 'property';
+$handler->display->display_options['filters']['scope']['field'] = 'scope';
+$handler->display->display_options['filters']['scope']['value'] = 'alternativeIdentifiers';
 $handler->display->display_options['merge_rows'] = TRUE;
 $handler->display->display_options['field_config'] = array(
   'id' => array(
@@ -612,6 +622,16 @@ $handler->display->display_options['fields']['view_3']['element_default_classes'
 $handler->display->display_options['fields']['view_3']['view'] = 'atomdrupalconnector';
 $handler->display->display_options['fields']['view_3']['display'] = 'return_title_view';
 $handler->display->display_options['fields']['view_3']['arguments'] = '!2';
+/* Field: AtoMitems: sources */
+$handler->display->display_options['fields']['sources']['id'] = 'sources';
+$handler->display->display_options['fields']['sources']['table'] = 'information_object_i18n';
+$handler->display->display_options['fields']['sources']['field'] = 'sources';
+$handler->display->display_options['fields']['sources']['label'] = 'Sources';
+$handler->display->display_options['fields']['sources']['alter']['nl2br'] = TRUE;
+$handler->display->display_options['fields']['sources']['element_type'] = 'p';
+$handler->display->display_options['fields']['sources']['element_class'] = 'fullwidtharchives';
+$handler->display->display_options['fields']['sources']['element_label_type'] = 'h2';
+$handler->display->display_options['fields']['sources']['element_label_colon'] = FALSE;
 /* Field: Global: View */
 $handler->display->display_options['fields']['view']['id'] = 'view';
 $handler->display->display_options['fields']['view']['table'] = 'views';
@@ -623,16 +643,6 @@ $handler->display->display_options['fields']['view']['hide_empty'] = TRUE;
 $handler->display->display_options['fields']['view']['view'] = 'atomdrupalconnector';
 $handler->display->display_options['fields']['view']['display'] = 'filelist_block';
 $handler->display->display_options['fields']['view']['arguments'] = '[!id]';
-/* Field: AtoMitems: sources */
-$handler->display->display_options['fields']['sources']['id'] = 'sources';
-$handler->display->display_options['fields']['sources']['table'] = 'information_object_i18n';
-$handler->display->display_options['fields']['sources']['field'] = 'sources';
-$handler->display->display_options['fields']['sources']['label'] = 'Sources';
-$handler->display->display_options['fields']['sources']['alter']['nl2br'] = TRUE;
-$handler->display->display_options['fields']['sources']['element_type'] = 'p';
-$handler->display->display_options['fields']['sources']['element_class'] = 'fullwidtharchives';
-$handler->display->display_options['fields']['sources']['element_label_type'] = 'h2';
-$handler->display->display_options['fields']['sources']['element_label_colon'] = FALSE;
 $handler->display->display_options['defaults']['arguments'] = FALSE;
 /* Contextual filter: Global: Null */
 $handler->display->display_options['arguments']['null']['id'] = 'null';
@@ -780,6 +790,7 @@ $handler->display->display_options['style_options']['columns'] = array(
   'identifier' => 'identifier',
   'title' => 'title',
   'date' => 'date',
+  'scope_and_content' => 'scope_and_content',
 );
 $handler->display->display_options['style_options']['default'] = '-1';
 $handler->display->display_options['style_options']['info'] = array(
@@ -811,6 +822,13 @@ $handler->display->display_options['style_options']['info'] = array(
     'separator' => '',
     'empty_column' => 0,
   ),
+  'scope_and_content' => array(
+    'sortable' => 0,
+    'default_sort_order' => 'asc',
+    'align' => '',
+    'separator' => '',
+    'empty_column' => 1,
+  ),
 );
 $handler->display->display_options['defaults']['style_options'] = FALSE;
 $handler->display->display_options['defaults']['row_plugin'] = FALSE;
@@ -836,6 +854,11 @@ $handler->display->display_options['fields']['title']['label'] = 'Title';
 $handler->display->display_options['fields']['date']['id'] = 'date';
 $handler->display->display_options['fields']['date']['table'] = 'event_i18n';
 $handler->display->display_options['fields']['date']['field'] = 'date';
+/* Field: AtoMitems: Scope and Content */
+$handler->display->display_options['fields']['scope_and_content']['id'] = 'scope_and_content';
+$handler->display->display_options['fields']['scope_and_content']['table'] = 'information_object_i18n';
+$handler->display->display_options['fields']['scope_and_content']['field'] = 'scope_and_content';
+$handler->display->display_options['fields']['scope_and_content']['hide_empty'] = TRUE;
 $handler->display->display_options['defaults']['sorts'] = FALSE;
 $handler->display->display_options['defaults']['arguments'] = FALSE;
 /* Contextual filter: AtoMitems: Parent ID */
