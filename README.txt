@@ -89,3 +89,8 @@ Demo
 ----
 I have exported our view that we use, it's not quite done yet, but you can load it if you are so inclined.  It is the Example.view.txt file and is not needed otherwise.
 
+
+Issues
+------
+
+A bunch of theme overrides have been added to allow scraping of the AtoM site as well.  This has resulted in the module becoming more than the original intended use.
