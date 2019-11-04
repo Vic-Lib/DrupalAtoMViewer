@@ -18,17 +18,9 @@ array An associative array describing the data structure. Primary key is the nam
 https://api.drupal.org/api/views/views.api.php/function/hook_views_data/7.x-3.x
 */
 
-
-
-
-
 //This doesn't work, it sets it to the views main title, not to the rendered output value for that page
-
-
-
 /*
 This function sets the TITLE of the View to the title of the AtoM node.  Probably not needed
-
 The original idea, before I realized you can pre process in the header PHP code in the vew, was to set it up so it would add the title to the end of the breadcrumb.
 */
 function AtoM_Drupal_Connector_views_pre_render(&$view) {
@@ -42,10 +34,6 @@ function AtoM_Drupal_Connector_views_pre_render(&$view) {
     */
   }
 }
-
-
-
-
 
 
 
@@ -139,8 +127,14 @@ This defines the relationships between elements in the AtoM database and then se
 
 function AtoM_Drupal_Connector_views_data() {
 
-  //The array which defines all the relationships
-  $data = array ();
+  //The array define the AtoM database tables that are reference
+  //the element in the array are formatted as such:
+  //$data['TABLE NAME']['table']['group'] = t("AtoMitems");
+
+  $data = array (); 
+  //term_i18n defines term for tables such as general notes which have n subsections which are names in this table
+  $data['term_i18n']['table']['group'] = t("AtoMitems");  
+  //TODO add comments for what the rest of the tables ha ve
   $data['information_object']['table']['group'] = t('AtoMitems');
   $data['information_object_i18n']['table']['group'] = t("AtoMitems");
   $data['digital_object']['table']['group'] = t("AtoMitems");
@@ -150,15 +144,10 @@ function AtoM_Drupal_Connector_views_data() {
   $data['event_i18n']['table']['group'] = t("AtoMitems");
   $data['actor']['table']['group'] = t("AtoMitems");
   $data['actor_i18n']['table']['group'] = t("AtoMitems");
-
-
   $data['property']['table']['group'] = t("AtoMitems");
   $data['property_i18n']['table']['group'] = t("AtoMitems");
-
-
-  //$data['TABLE NAME']['table']['group'] = t("AtoMitems");
-
-  // This is the main AtoM node definition for the view.
+ 
+  //This is the base AtoM node definition for entering the view.
   $data['information_object']['table']['base'] = array(
     'field' => 'level_of_description_id',
     'title' => t('AtoMitems'),
@@ -168,7 +157,7 @@ function AtoM_Drupal_Connector_views_data() {
 
   );
 
-  //These are the joins between tables
+  //These are the joins between tables which relate to the db entry point
   $data['information_object_i18n']['table']['join'] = array(
     'information_object' => array(
       'left_field' => 'id',
@@ -184,14 +173,35 @@ function AtoM_Drupal_Connector_views_data() {
   );
 
   //The following joins are multitable joins and result in some one to many issues
+  //The best solution is to use the merge rows plugin
 
+  
   $data['note']['table']['join'] = array(
     'information_object' => array(
       'left_field' => 'id',
       'field' => 'object_id',
     ),
   );
+  
+  $data['note_i18n']['table']['join'] = array(
+    'information_object' => array(
+      'left_field' => 'id',
+      'field' => 'id',
+      'left_table' => 'note'
+    ),
+  );
 
+  $data['term_i18n']['table']['join'] = array(
+    'information_object' => array(
+      'left_field' => 'type_id',
+      'field' => 'id',
+      'left_table' => 'note',
+    ),
+  );
+
+
+  //Note itself
+  /*
   $data['note_i18n']['table']['join'] = array(
     'information_object' => array(
       'left_field' => 'id',
@@ -199,7 +209,20 @@ function AtoM_Drupal_Connector_views_data() {
       'left_table' => 'note',
     ),
   );
- 
+  */
+
+  /*
+  //Name of the note
+  $data['term_i18n']['table']['join'] = array(
+    'information_object' => array(
+      'left_field' => 'type_id',
+      'field' => 'id',
+      'left_table' => 'note_i18n',
+    ),
+  );
+  */
+
+  //TODO why do some fields not have a left table?
   $data['event']['table']['join'] = array(
     'information_object' => array(
       'left_field' => 'id',
@@ -312,10 +335,26 @@ function AtoM_Drupal_Connector_views_data() {
   );
 
   $note_i18n_table = array('note_i18n',array(
-    array ("string","content","Note 18n Text","This is some note attached to the AtoM record"),
+    array ("string","content","ATERMGENERAL NOTE content","This is the title of the general note attached to the atom record"),
+
+    //array ("string","content","General Note Text","This is a general note attached to an atom record"),
     )
   );
 
+  $term_i18n_table = array('term_i18n',array(
+    array ("string","name","ATERMGENERAL NOTE title","This is the title of the general note attached to the atom record"),
+    array ("string","culture","ATERMGENERAL NOTE title language","This is the AtoM lanuage selection, eg en"),
+
+    )
+  );
+  
+/*
+  $note_table = array('note',array(
+    array ("string","name","GENERAL NOTE title","This is the title of the general note attached to the atom record"),
+    array ("string","type_id","GENERAL NOTE content","This is the title of the general note attached to the atom record"),
+    )
+  );
+  */
   $event_i18n_table = array('event_i18n',array(
     array ("string","date","Date","The date"),
     )
@@ -351,6 +390,8 @@ function AtoM_Drupal_Connector_views_data() {
   $data = Add_column_to_data($actor_i18n_table, $data);
   $data = Add_column_to_data($property_table, $data);
   $data = Add_column_to_data($property_i18n_table, $data);
+  $data = Add_column_to_data($term_i18n_table, $data);
+  $data = Add_column_to_data($note_table, $data);
 
 
 

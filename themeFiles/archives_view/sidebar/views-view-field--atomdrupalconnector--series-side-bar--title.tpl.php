@@ -28,16 +28,23 @@
     information_object_i18n_title (String, 26 characters ) Minutes and correspondence
  */
  
+ //dpm($_GET);
+ //dpm($row);
+ //dpm($view->pratt_q_resolved);
+ //dpm($view->pratt_args_resolved);
+ //dpm($view->args);
  
- 
- $identifier = $row->information_object_identifier;
- $title = $identifier . '. ' . $row->information_object_i18n_title;
+ $identifier = $row->information_object_identifier; 
  $elements = explode('-', $identifier);
  //$link = 'archives/holdings/f' . $elements[0] . '/series_' . $elements[1];
  $attributes = array('attributes' => array('class' => array('sidebar_active')));
 
 $request_path = request_path();
 $dirs = explode('/', $request_path);
+
+//dpm($dirs);
+//dpm($identifier);
+
 //fonds page
 if(count($dirs) == 3) {
 	$dirs[3] = 'series_' . $elements[1];
@@ -48,6 +55,17 @@ if(count($dirs) == 4) {
 	$dirs[3] = 'series_' . $elements[1];
 }
 
+if(count($dirs) == 5) {
+	$dirs[3] = 'series_' . $elements[1];
+	unset($dirs[4]);
+}
+
+//dpm($elements);
+//dpm($dirs);
+
+//Note: subseries page is in another template
+
+$title = $elements[1] . '. ' . $row->information_object_i18n_title;
 $link = implode('/', $dirs);
  
  //dpm(request_path());

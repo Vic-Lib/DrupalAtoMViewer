@@ -89,3 +89,7 @@ section>div {
   border: 1px solid none;
   line-height: 1.5em;
 }
+
+
+/***** OTHERS *****/
+td.views-field-identifier { width: 20%; }

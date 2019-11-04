@@ -11,7 +11,15 @@
  * @ingroup views_templates
  */
 
-
+ $added = array();
+ foreach($rows as $key => $row) {
+	 if(in_array($row, $added)) {
+		 //remove duplicates		 
+		 unset($rows[$key]);
+	 }else{
+		 $added[] = $row;
+	 }
+ }
 ?>
 
 
@@ -46,8 +54,9 @@ if (preg_match("/.*alphabet.*/",current($classes_array), $match)) {
     $i = 0;
     ?>
 
-    <?php foreach ($rows as $id => $row): 
-      
+    <?php 
+	foreach ($rows as $id => $row):      
+	
       $i ++;
       if ($i == $count) : ?>
         </td>

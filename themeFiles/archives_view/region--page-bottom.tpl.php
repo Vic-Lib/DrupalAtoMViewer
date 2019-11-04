@@ -42,10 +42,12 @@ if(is_object($views_page) && $views_page->name == 'atomdrupalconnector'):
 
 <!-- set up top info box (green area besides the top image) -->
 <script type="text/javascript">
+/*
 var selector = 'h1, .breadcrumb a:contains("Fonds")';
 var title = jQuery(selector).text();
 //console.log(text.trim());
 jQuery('#banner').after('<div id="top_info_box"><p>' + title + '</p></div>');
+*/
 </script>
 
 <style type="text/css">

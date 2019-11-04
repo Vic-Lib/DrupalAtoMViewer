@@ -107,6 +107,11 @@ $handler->display->display_options['fields']['nothing']['ui_name'] = 'Blank text
 $handler->display->display_options['fields']['nothing']['label'] = '';
 $handler->display->display_options['fields']['nothing']['element_label_colon'] = FALSE;
 $handler->display->display_options['path'] = 'archives/holdings';
+$handler->display->display_options['menu']['title'] = 'Finding Aids for Textual Material';
+$handler->display->display_options['menu']['weight'] = '0';
+$handler->display->display_options['menu']['name'] = 'main-menu';
+$handler->display->display_options['menu']['context'] = 0;
+$handler->display->display_options['menu']['context_only_inline'] = 0;
 
 /* Display: alphabetical_list */
 $handler = $view->new_display('attachment', 'alphabetical_list', 'attachment_1');
@@ -192,7 +197,7 @@ $handler->display->display_options['filters']['authorized_form_of_name']['field'
 $handler->display->display_options['filters']['authorized_form_of_name']['operator'] = '!=';
 $handler->display->display_options['field_config'] = array(
   'id' => array(
-    'merge_option' => 'filter',
+    'merge_option' => 'merge_unique',
     'separator' => ', ',
   ),
   'level_of_description_id' => array(
@@ -203,27 +208,11 @@ $handler->display->display_options['field_config'] = array(
     'merge_option' => 'merge_unique',
     'separator' => ',',
   ),
-  'value' => array(
-    'merge_option' => 'merge_unique',
-    'separator' => ', ',
-  ),
-  'nothing' => array(
-    'merge_option' => 'merge_unique',
-    'separator' => ', ',
-  ),
   'authorized_form_of_name' => array(
     'merge_option' => 'merge_unique',
     'separator' => ', ',
   ),
-  'php_1' => array(
-    'merge_option' => 'merge_unique',
-    'separator' => ' ContactHelpDesk ',
-  ),
-  'php' => array(
-    'merge_option' => 'merge_unique',
-    'separator' => ' ContactHelpDesk ',
-  ),
-  'nothing_1' => array(
+  'lettergroup' => array(
     'merge_option' => 'merge_unique',
     'separator' => ', ',
   ),
@@ -274,6 +263,13 @@ $handler->display->display_options['fields']['level_of_description_id']['label']
 $handler->display->display_options['fields']['level_of_description_id']['exclude'] = TRUE;
 $handler->display->display_options['fields']['level_of_description_id']['alter']['trim_whitespace'] = TRUE;
 $handler->display->display_options['fields']['level_of_description_id']['element_label_colon'] = FALSE;
+/* Field: AtoMitems: Identifier */
+$handler->display->display_options['fields']['identifier']['id'] = 'identifier';
+$handler->display->display_options['fields']['identifier']['table'] = 'information_object';
+$handler->display->display_options['fields']['identifier']['field'] = 'identifier';
+$handler->display->display_options['fields']['identifier']['label'] = '';
+$handler->display->display_options['fields']['identifier']['exclude'] = TRUE;
+$handler->display->display_options['fields']['identifier']['element_label_colon'] = FALSE;
 /* Field: AtoMitems: title */
 $handler->display->display_options['fields']['title']['id'] = 'title';
 $handler->display->display_options['fields']['title']['table'] = 'information_object_i18n';
@@ -321,6 +317,32 @@ $handler->display->display_options['filters']['authorized_form_of_name']['id'] =
 $handler->display->display_options['filters']['authorized_form_of_name']['table'] = 'actor_i18n';
 $handler->display->display_options['filters']['authorized_form_of_name']['field'] = 'authorized_form_of_name';
 $handler->display->display_options['filters']['authorized_form_of_name']['operator'] = '!=';
+$handler->display->display_options['field_config'] = array(
+  'id' => array(
+    'merge_option' => 'merge_unique',
+    'separator' => ', ',
+  ),
+  'level_of_description_id' => array(
+    'merge_option' => 'merge_unique',
+    'separator' => ', ',
+  ),
+  'identifier' => array(
+    'merge_option' => 'merge_unique',
+    'separator' => ', ',
+  ),
+  'title' => array(
+    'merge_option' => 'merge_unique',
+    'separator' => ', ',
+  ),
+  'value' => array(
+    'merge_option' => 'merge_unique',
+    'separator' => ', ',
+  ),
+  'authorized_form_of_name' => array(
+    'merge_option' => 'merge_unique',
+    'separator' => ', ',
+  ),
+);
 $handler->display->display_options['displays'] = array(
   'page' => 'page',
   'default' => 0,
