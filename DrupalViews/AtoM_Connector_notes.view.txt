@@ -1,0 +1,49 @@
+$view = new view();
+$view->name = 'atomconnectornotes';
+$view->description = '';
+$view->tag = 'default';
+$view->base_table = 'note';
+$view->human_name = 'AtoM_Connector_Notes';
+$view->core = 7;
+$view->api_version = '3.0';
+$view->disabled = FALSE; /* Edit this to true to make a default view disabled initially */
+
+/* Display: Master */
+$handler = $view->new_display('default', 'Master', 'default');
+$handler->display->display_options['title'] = 'atomconnectornotes';
+$handler->display->display_options['use_more_always'] = FALSE;
+$handler->display->display_options['access']['type'] = 'none';
+$handler->display->display_options['cache']['type'] = 'none';
+$handler->display->display_options['query']['type'] = 'views_query';
+$handler->display->display_options['exposed_form']['type'] = 'basic';
+$handler->display->display_options['pager']['type'] = 'none';
+$handler->display->display_options['pager']['options']['offset'] = '0';
+$handler->display->display_options['style_plugin'] = 'default';
+$handler->display->display_options['row_plugin'] = 'fields';
+/* Field: AtoMConnector_General Notes: Note title */
+$handler->display->display_options['fields']['name']['id'] = 'name';
+$handler->display->display_options['fields']['name']['table'] = 'term_i18n';
+$handler->display->display_options['fields']['name']['field'] = 'name';
+$handler->display->display_options['fields']['name']['label'] = '';
+$handler->display->display_options['fields']['name']['element_type'] = 'h3';
+$handler->display->display_options['fields']['name']['element_label_colon'] = FALSE;
+/* Field: AtoMConnector_General Notes: Note content */
+$handler->display->display_options['fields']['content']['id'] = 'content';
+$handler->display->display_options['fields']['content']['table'] = 'note_i18n';
+$handler->display->display_options['fields']['content']['field'] = 'content';
+$handler->display->display_options['fields']['content']['label'] = '';
+$handler->display->display_options['fields']['content']['element_type'] = 'p';
+$handler->display->display_options['fields']['content']['element_label_colon'] = FALSE;
+/* Contextual filter: AtoMConnector_General Notes: AtoM object ID */
+$handler->display->display_options['arguments']['object_id']['id'] = 'object_id';
+$handler->display->display_options['arguments']['object_id']['table'] = 'note';
+$handler->display->display_options['arguments']['object_id']['field'] = 'object_id';
+$handler->display->display_options['arguments']['object_id']['default_action'] = 'not found';
+$handler->display->display_options['arguments']['object_id']['default_argument_type'] = 'fixed';
+$handler->display->display_options['arguments']['object_id']['summary']['number_of_records'] = '0';
+$handler->display->display_options['arguments']['object_id']['summary']['format'] = 'default_summary';
+$handler->display->display_options['arguments']['object_id']['summary_options']['items_per_page'] = '25';
+$handler->display->display_options['arguments']['object_id']['limit'] = '0';
+
+/* Display: Block */
+$handler = $view->new_display('block', 'Block', 'block_1');

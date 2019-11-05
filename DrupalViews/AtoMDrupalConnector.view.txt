@@ -244,34 +244,6 @@ $handler->display->display_options['fields']['scope_and_content']['element_type'
 $handler->display->display_options['fields']['scope_and_content']['element_class'] = 'fullwidtharchives';
 $handler->display->display_options['fields']['scope_and_content']['element_label_type'] = 'h2';
 $handler->display->display_options['fields']['scope_and_content']['element_label_colon'] = FALSE;
-/* Field: Global: Custom text */
-$handler->display->display_options['fields']['nothing']['id'] = 'nothing';
-$handler->display->display_options['fields']['nothing']['table'] = 'views';
-$handler->display->display_options['fields']['nothing']['field'] = 'nothing';
-$handler->display->display_options['fields']['nothing']['label'] = 'General Notes';
-$handler->display->display_options['fields']['nothing']['alter']['text'] = ' ';
-$handler->display->display_options['fields']['nothing']['element_label_type'] = 'h2';
-/* Field: General Notes headings */
-$handler->display->display_options['fields']['name']['id'] = 'name';
-$handler->display->display_options['fields']['name']['table'] = 'term_i18n';
-$handler->display->display_options['fields']['name']['field'] = 'name';
-$handler->display->display_options['fields']['name']['ui_name'] = 'General Notes headings';
-$handler->display->display_options['fields']['name']['label'] = '';
-$handler->display->display_options['fields']['name']['exclude'] = TRUE;
-$handler->display->display_options['fields']['name']['alter']['text'] = ' ';
-$handler->display->display_options['fields']['name']['element_label_type'] = 'h2';
-$handler->display->display_options['fields']['name']['element_label_colon'] = FALSE;
-/* Field: AtoMitems: ATERMGENERAL NOTE content */
-$handler->display->display_options['fields']['content']['id'] = 'content';
-$handler->display->display_options['fields']['content']['table'] = 'note_i18n';
-$handler->display->display_options['fields']['content']['field'] = 'content';
-$handler->display->display_options['fields']['content']['label'] = '';
-$handler->display->display_options['fields']['content']['alter']['alter_text'] = TRUE;
-$handler->display->display_options['fields']['content']['alter']['text'] = '<h3>[name]</h3>
-<p class="fullwidtharchives">
-[content]
-</p>';
-$handler->display->display_options['fields']['content']['element_label_colon'] = FALSE;
 /* Field: Global: View */
 $handler->display->display_options['fields']['view_2']['id'] = 'view_2';
 $handler->display->display_options['fields']['view_2']['table'] = 'views';
@@ -409,6 +381,15 @@ $handler->display->display_options['fields']['view_1']['hide_empty'] = TRUE;
 $handler->display->display_options['fields']['view_1']['view'] = 'atomdrupalconnector';
 $handler->display->display_options['fields']['view_1']['display'] = 'filelist_block';
 $handler->display->display_options['fields']['view_1']['arguments'] = '1/1/1/1/1';
+/* Field: Global: View */
+$handler->display->display_options['fields']['view']['id'] = 'view';
+$handler->display->display_options['fields']['view']['table'] = 'views';
+$handler->display->display_options['fields']['view']['field'] = 'view';
+$handler->display->display_options['fields']['view']['label'] = 'General Notes';
+$handler->display->display_options['fields']['view']['element_label_type'] = 'h2';
+$handler->display->display_options['fields']['view']['view'] = 'atomconnectornotes';
+$handler->display->display_options['fields']['view']['display'] = 'block_1';
+$handler->display->display_options['fields']['view']['arguments'] = '[!id]';
 $handler->display->display_options['defaults']['arguments'] = FALSE;
 /* Contextual filter: AtoMitems: id */
 $handler->display->display_options['arguments']['id']['id'] = 'id';
@@ -426,11 +407,6 @@ $handler->display->display_options['filters']['scope']['id'] = 'scope';
 $handler->display->display_options['filters']['scope']['table'] = 'property';
 $handler->display->display_options['filters']['scope']['field'] = 'scope';
 $handler->display->display_options['filters']['scope']['value'] = 'alternativeIdentifiers';
-/* Filter criterion: AtoMitems: ATERMGENERAL NOTE title language */
-$handler->display->display_options['filters']['culture']['id'] = 'culture';
-$handler->display->display_options['filters']['culture']['table'] = 'term_i18n';
-$handler->display->display_options['filters']['culture']['field'] = 'culture';
-$handler->display->display_options['filters']['culture']['value'] = 'en';
 $handler->display->display_options['merge_rows'] = TRUE;
 $handler->display->display_options['field_config'] = array(
   'id' => array(
@@ -647,7 +623,7 @@ $handler->display->display_options['fields']['scope_and_content']['element_type'
 $handler->display->display_options['fields']['scope_and_content']['element_class'] = 'fullwidtharchives';
 $handler->display->display_options['fields']['scope_and_content']['element_label_type'] = 'h2';
 $handler->display->display_options['fields']['scope_and_content']['element_label_colon'] = FALSE;
-/* Field: AtoMitems: ATERMGENERAL NOTE content */
+/* Field: AtoMConnector_General Notes: Note content */
 $handler->display->display_options['fields']['content_1']['id'] = 'content_1';
 $handler->display->display_options['fields']['content_1']['table'] = 'note_i18n';
 $handler->display->display_options['fields']['content_1']['field'] = 'content';
@@ -806,13 +782,17 @@ $handler->display->display_options['field_config'] = array(
     'merge_option' => 'merge_unique',
     'separator' => ', ',
   ),
+  'acquisition' => array(
+    'merge_option' => 'merge_unique',
+    'separator' => ', ',
+  ),
   'scope_and_content' => array(
     'merge_option' => 'merge_unique',
     'separator' => ', ',
   ),
   'content_1' => array(
     'merge_option' => 'merge_unique',
-    'separator' => ', ',
+    'separator' => '<br>',
   ),
   'related_units_of_description' => array(
     'merge_option' => 'merge_unique',
@@ -835,6 +815,10 @@ $handler->display->display_options['field_config'] = array(
     'separator' => ', ',
   ),
   'view_3' => array(
+    'merge_option' => 'merge_unique',
+    'separator' => ', ',
+  ),
+  'sources' => array(
     'merge_option' => 'merge_unique',
     'separator' => ', ',
   ),
