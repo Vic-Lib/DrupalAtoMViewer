@@ -1,0 +1,63 @@
+$view = new view();
+$view->name = 'atomdrupalconnector_property';
+$view->description = '';
+$view->tag = 'default';
+$view->base_table = 'property';
+$view->human_name = 'AtoMDrupalConnector Property';
+$view->core = 7;
+$view->api_version = '3.0';
+$view->disabled = FALSE; /* Edit this to true to make a default view disabled initially */
+
+/* Display: Master */
+$handler = $view->new_display('default', 'Master', 'default');
+$handler->display->display_options['title'] = 'AtoMDrupalConnector Property';
+$handler->display->display_options['use_more_always'] = FALSE;
+$handler->display->display_options['access']['type'] = 'none';
+$handler->display->display_options['cache']['type'] = 'none';
+$handler->display->display_options['query']['type'] = 'views_query';
+$handler->display->display_options['exposed_form']['type'] = 'basic';
+$handler->display->display_options['pager']['type'] = 'some';
+$handler->display->display_options['pager']['options']['items_per_page'] = '5';
+$handler->display->display_options['style_plugin'] = 'default';
+$handler->display->display_options['row_plugin'] = 'fields';
+/* Field: AtoMitems: Object ID */
+$handler->display->display_options['fields']['object_id']['id'] = 'object_id';
+$handler->display->display_options['fields']['object_id']['table'] = 'property';
+$handler->display->display_options['fields']['object_id']['field'] = 'object_id';
+$handler->display->display_options['fields']['object_id']['exclude'] = TRUE;
+/* Field: AtoMitems: Additional Attribute NAME */
+$handler->display->display_options['fields']['name']['id'] = 'name';
+$handler->display->display_options['fields']['name']['table'] = 'property';
+$handler->display->display_options['fields']['name']['field'] = 'name';
+$handler->display->display_options['fields']['name']['label'] = '';
+$handler->display->display_options['fields']['name']['element_type'] = 'h2';
+$handler->display->display_options['fields']['name']['element_label_colon'] = FALSE;
+/* Field: AtoMitems: Additional Attribute TYPE */
+$handler->display->display_options['fields']['scope']['id'] = 'scope';
+$handler->display->display_options['fields']['scope']['table'] = 'property';
+$handler->display->display_options['fields']['scope']['field'] = 'scope';
+$handler->display->display_options['fields']['scope']['exclude'] = TRUE;
+/* Field: AtoMitems: Additional Attribute VALUE */
+$handler->display->display_options['fields']['value']['id'] = 'value';
+$handler->display->display_options['fields']['value']['table'] = 'property_i18n';
+$handler->display->display_options['fields']['value']['field'] = 'value';
+$handler->display->display_options['fields']['value']['label'] = '';
+$handler->display->display_options['fields']['value']['element_type'] = 'p';
+$handler->display->display_options['fields']['value']['element_label_colon'] = FALSE;
+/* Contextual filter: AtoMitems: Object ID */
+$handler->display->display_options['arguments']['object_id']['id'] = 'object_id';
+$handler->display->display_options['arguments']['object_id']['table'] = 'property';
+$handler->display->display_options['arguments']['object_id']['field'] = 'object_id';
+$handler->display->display_options['arguments']['object_id']['default_argument_type'] = 'fixed';
+$handler->display->display_options['arguments']['object_id']['summary']['number_of_records'] = '0';
+$handler->display->display_options['arguments']['object_id']['summary']['format'] = 'default_summary';
+$handler->display->display_options['arguments']['object_id']['summary_options']['items_per_page'] = '25';
+$handler->display->display_options['arguments']['object_id']['limit'] = '0';
+/* Filter criterion: AtoMitems: Additional Attribute TYPE */
+$handler->display->display_options['filters']['scope']['id'] = 'scope';
+$handler->display->display_options['filters']['scope']['table'] = 'property';
+$handler->display->display_options['filters']['scope']['field'] = 'scope';
+$handler->display->display_options['filters']['scope']['value'] = 'alternativeIdentifiers';
+
+/* Display: Block */
+$handler = $view->new_display('block', 'Block', 'block');

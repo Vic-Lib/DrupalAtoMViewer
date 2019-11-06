@@ -148,7 +148,7 @@ function AtoM_Drupal_Connector_views_data() {
   //This is the base AtoM node definition for entering the view.
   $data['information_object']['table']['base'] = array(
     'field' => 'level_of_description_id',
-    'title' => t('AtoMConnector_AtoM items'),
+    'title' => t('AtoM Connecton Records'),
     'database' => "atomDatabase",
     'help' => t('This is the main AtoM Database'),
     'weight' => -10,
@@ -176,6 +176,7 @@ function AtoM_Drupal_Connector_views_data() {
     array ("numeric","level_of_description_id","Level of Description","This is the AtoM node type, fonds 227, series 230, subseries 231, file 232"),
     array ("numeric","parent_id","Parent ID","This is the parent of the AtoM node, so for a file it would be a series"),
     array ("string","identifier","Identifier","The fonds or location of the collection or object"),
+    //array ("string","object_id","Object ID","The index of actors related to this collection"),
   ));
 
 
@@ -222,18 +223,18 @@ function AtoM_Drupal_Connector_views_data() {
   ////////////////////////////////////////////////////////////////////
 
   //Define tables
-
-  $data['term_i18n']['table']['group'] = t("AtoMConnector_General Notes");  
+  
   $data['note']['table']['group'] = t("AtoMConnector_General Notes");
+  $data['term_i18n']['table']['group'] = t("AtoMConnector_General Notes");  
   $data['note_i18n']['table']['group'] = t("AtoMConnector_General Notes");
 
   //Define Joins
 
   $data['note']['table']['base'] = array(
     'field' => 'level_of_description_id',
-    'title' => t('AtoMConnector_General Notes'),
+    'title' => t('AtoM Connecton Notes'),
     'database' => "atomDatabase",
-    'help' => t('This is a list of general notes'),
+    'help' => t('these are the general notes and their headers'),
     'weight' => -10,
   );
   
@@ -241,7 +242,7 @@ function AtoM_Drupal_Connector_views_data() {
     'note' => array(
       'left_field' => 'id',
       'field' => 'id',
-      'left_table' => 'note'
+      //'left_table' => 'note'
     ),
   );
 
@@ -249,7 +250,7 @@ function AtoM_Drupal_Connector_views_data() {
     'note' => array(
       'left_field' => 'type_id',
       'field' => 'id',
-      'left_table' => 'note',
+      //'left_table' => 'note',
     ),
   );
 
@@ -277,77 +278,83 @@ function AtoM_Drupal_Connector_views_data() {
   $data = Add_column_to_data($term_i18n_table, $data);
   $data = Add_column_to_data($note_i18n_table, $data);
 
-  /////////////////////////////////////////////////////////////////////////////////////////////////
-  /**
-   * FIX THIS SECTION, put into sub groups...
-   */
+  ////////////////////////////////////////////////////////////////////
+  ///////// Event...
+  ////////////////////////////////////////////////////////////////////
 
-  //TODO These need to be NEW View types, like notes is, and then joined as blocks into notes
 
   $data['event']['table']['group'] = t("AtoMitems");
   $data['event_i18n']['table']['group'] = t("AtoMitems");
-  $data['actor']['table']['group'] = t("AtoMitems");
-  $data['actor_i18n']['table']['group'] = t("AtoMitems");
-  $data['property']['table']['group'] = t("AtoMitems");
-  $data['property_i18n']['table']['group'] = t("AtoMitems");
 
-
-  //TODO why do some fields not have a left table?
-  $data['event']['table']['join'] = array(
-    'information_object' => array(
-      'left_field' => 'id',
-      //This doesn't help 'type' => 'inner',
-      'field' => 'object_id',
-    ),
+  $data['event']['table']['base'] = array(
+    'field' => 'level_of_description_id',
+    'title' => t('AtoM Connecton Events'),
+    'database' => "atomDatabase",
+    'help' => t('These are events related to an item'),
+    'weight' => -10,
   );
 
   $data['event_i18n']['table']['join'] = array(
-    'information_object' => array( 
+    'event' => array( 
       'left_field' => 'id',
       'field' => 'id',
-      'left_table' => 'event',
+      //'left_table' => 'event',
     ),
   );
 
+  $event_table = array('event',array(
+    array ("string","object_id","Object ID","This is the id to join the atom record with"),    
+    )
+  );
 
-  $data['actor']['table']['join'] = array(
-    'information_object' => array(
-      'left_field' => 'actor_id',
-      'field' => 'id',
-      'left_table' => 'event',
-    ),
+  $event_i18n_table = array('event_i18n',array(
+    array ("string","date","Date","The date(s)"),
+    )
+  );
+
+  $data = Add_column_to_data($event_table, $data);
+  $data = Add_column_to_data($event_i18n_table, $data);
+
+  ////////////////////////////////////////////////////////////////////
+  ///////// Actor...
+  ////////////////////////////////////////////////////////////////////
+
+  $data['actor']['table']['group'] = t("AtoMitems");
+  $data['actor_i18n']['table']['group'] = t("AtoMitems");
+
+  $data['actor']['table']['base'] = array(
+    'field' => 'level_of_description_id',
+    'title' => t('AtoM Connecton Actor'),
+    'database' => "atomDatabase",
+    'help' => t('These are actors related to an item'),
+    'weight' => -10,
   );
 
   $data['actor_i18n']['table']['join'] = array(
-    'information_object' => array(
+    'actor' => array(
       'left_field' => 'id',
       'field' => 'id',
-      'left_table' => 'actor',
+      //'left_table' => 'actor',
     ),
   );
 
-
-  $data['property']['table']['join'] = array(
-    'information_object' => array(
+  $data['event']['table']['join'] = array(
+    'actor' => array(
       'left_field' => 'id',
-      'field' => 'object_id',
+      'field' => 'actor_id',
+      //'left_table' => 'actor',
     ),
   );
 
-  $data['property_i18n']['table']['join'] = array(
-    'information_object' => array(
-      'left_field' => 'id',
-      'field' => 'id',
-      'left_table' => 'property',
-    ),
-  );
-
-
-  $event_i18n_table = array('event_i18n',array(
-    array ("string","date","Date","The date"),
+  $event_table = array('event',array(
+    array ("string","id","actor ID","The ObjectID of the atom Record to connect with"),
     )
   );
- 
+
+  $actor_table = array('actor',array(
+    array ("string","id","ID","This ID relates to the event table"),
+    )
+  );
 
   $actor_i18n_table = array('actor_i18n',array(
     array ("string","authorized_form_of_name","Authorized form of name","The name of the actor"),
@@ -355,26 +362,47 @@ function AtoM_Drupal_Connector_views_data() {
     )
   );
 
+  $data = Add_column_to_data($event_table, $data);
+  $data = Add_column_to_data($actor_table, $data);
+  $data = Add_column_to_data($actor_i18n_table, $data);
+
+  ////////////////////////////////////////////////////////////////////
+  ///////// Property...
+  ////////////////////////////////////////////////////////////////////
+
+  $data['property']['table']['group'] = t("AtoMitems");
+  $data['property_i18n']['table']['group'] = t("AtoMitems");
+
+  $data['property']['table']['base'] = array(
+    'field' => 'level_of_description_id',
+    'title' => t('AtoM Connecton Property'),
+    'database' => "atomDatabase",
+    'help' => t('These are events related to an item'),
+    'weight' => -10,
+  );
+
+  $data['property_i18n']['table']['join'] = array(
+    'property' => array(
+      'left_field' => 'id',
+      'field' => 'id',
+      //'left_table' => 'property',
+    ),
+  );
 
   $property_table = array('property',array(
+    array ("string","object_id","Object ID", "Object ID of the AtoM record"),
     array ("string","scope","Additional Attribute TYPE","The AtoM defined type of the additaional attribute, for example alternativeIdentfiers"),
     array ("string","name","Additional Attribute NAME","User generated name for the class of addional identifiers, for example \"category\""),
     )
   );
-
 
   $property_i18n_table = array('property_i18n',array(
     array ("string","value","Additional Attribute VALUE","Additional attribute for the item, like a category"),
     )
   );
 
-
-  $data = Add_column_to_data($event_i18n_table, $data);
-  $data = Add_column_to_data($actor_i18n_table, $data);
   $data = Add_column_to_data($property_table, $data);
   $data = Add_column_to_data($property_i18n_table, $data);
- 
-
   
   ////////////////////////////////////////////////////////////////////
   ///////// Final return statement with the complete database connectors
