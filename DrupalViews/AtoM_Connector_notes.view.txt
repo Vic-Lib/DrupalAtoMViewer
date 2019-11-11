@@ -44,6 +44,11 @@ $handler->display->display_options['arguments']['object_id']['summary']['number_
 $handler->display->display_options['arguments']['object_id']['summary']['format'] = 'default_summary';
 $handler->display->display_options['arguments']['object_id']['summary_options']['items_per_page'] = '25';
 $handler->display->display_options['arguments']['object_id']['limit'] = '0';
+/* Filter criterion: AtoMConnector_General Notes: Language Options */
+$handler->display->display_options['filters']['culture']['id'] = 'culture';
+$handler->display->display_options['filters']['culture']['table'] = 'term_i18n';
+$handler->display->display_options['filters']['culture']['field'] = 'culture';
+$handler->display->display_options['filters']['culture']['value'] = 'en';
 
 /* Display: Block */
 $handler = $view->new_display('block', 'Block', 'block_1');

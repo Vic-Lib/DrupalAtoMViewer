@@ -1,15 +1,16 @@
 $view = new view();
-$view->name = 'atomdrupalconnector_fondslist';
+$view->name = 'atomdrupalconnector_fonds';
 $view->description = '';
 $view->tag = 'default';
 $view->base_table = 'information_object';
-$view->human_name = 'AtoMDrupalConnector FondsList';
+$view->human_name = 'AtoMDrupalConnector Fonds';
 $view->core = 7;
 $view->api_version = '3.0';
 $view->disabled = FALSE; /* Edit this to true to make a default view disabled initially */
 
 /* Display: Master */
 $handler = $view->new_display('default', 'Master', 'default');
+$handler->display->display_options['title'] = 'AtoMDrupalConnector Fonds';
 $handler->display->display_options['use_more_always'] = FALSE;
 $handler->display->display_options['access']['type'] = 'none';
 $handler->display->display_options['cache']['type'] = 'none';
@@ -18,232 +19,34 @@ $handler->display->display_options['exposed_form']['type'] = 'basic';
 $handler->display->display_options['pager']['type'] = 'none';
 $handler->display->display_options['pager']['options']['offset'] = '0';
 $handler->display->display_options['style_plugin'] = 'default';
-$handler->display->display_options['style_options']['default_row_class'] = FALSE;
-$handler->display->display_options['style_options']['row_class_special'] = FALSE;
 $handler->display->display_options['row_plugin'] = 'fields';
-$handler->display->display_options['row_options']['default_field_elements'] = FALSE;
 /* Field: AtoMitems: id */
 $handler->display->display_options['fields']['id']['id'] = 'id';
 $handler->display->display_options['fields']['id']['table'] = 'information_object';
 $handler->display->display_options['fields']['id']['field'] = 'id';
-$handler->display->display_options['fields']['id']['label'] = '';
-$handler->display->display_options['fields']['id']['exclude'] = TRUE;
-$handler->display->display_options['fields']['id']['element_label_colon'] = FALSE;
-$handler->display->display_options['fields']['id']['separator'] = '';
-/* Field: AtoMitems: Level of Description */
-$handler->display->display_options['fields']['level_of_description_id']['id'] = 'level_of_description_id';
-$handler->display->display_options['fields']['level_of_description_id']['table'] = 'information_object';
-$handler->display->display_options['fields']['level_of_description_id']['field'] = 'level_of_description_id';
-$handler->display->display_options['fields']['level_of_description_id']['label'] = '';
-$handler->display->display_options['fields']['level_of_description_id']['exclude'] = TRUE;
-$handler->display->display_options['fields']['level_of_description_id']['element_label_colon'] = FALSE;
 /* Field: AtoMitems: title */
 $handler->display->display_options['fields']['title']['id'] = 'title';
 $handler->display->display_options['fields']['title']['table'] = 'information_object_i18n';
 $handler->display->display_options['fields']['title']['field'] = 'title';
-$handler->display->display_options['fields']['title']['label'] = '';
-$handler->display->display_options['fields']['title']['alter']['make_link'] = TRUE;
-$handler->display->display_options['fields']['title']['alter']['path'] = 'atomdrupalconnector/[id]';
-$handler->display->display_options['fields']['title']['element_label_colon'] = FALSE;
-$handler->display->display_options['fields']['title']['hide_empty'] = TRUE;
-/* Field: AtoMitems: Additional Attribute VALUE */
-$handler->display->display_options['fields']['value']['id'] = 'value';
-$handler->display->display_options['fields']['value']['table'] = 'property_i18n';
-$handler->display->display_options['fields']['value']['field'] = 'value';
-$handler->display->display_options['fields']['value']['label'] = '';
-$handler->display->display_options['fields']['value']['exclude'] = TRUE;
-$handler->display->display_options['fields']['value']['element_label_colon'] = FALSE;
 /* Sort criterion: AtoMitems: title */
 $handler->display->display_options['sorts']['title']['id'] = 'title';
 $handler->display->display_options['sorts']['title']['table'] = 'information_object_i18n';
 $handler->display->display_options['sorts']['title']['field'] = 'title';
-/* Sort criterion: AtoMitems: Additional Attribute VALUE */
-$handler->display->display_options['sorts']['value']['id'] = 'value';
-$handler->display->display_options['sorts']['value']['table'] = 'property_i18n';
-$handler->display->display_options['sorts']['value']['field'] = 'value';
 /* Filter criterion: AtoMitems: Level of Description */
 $handler->display->display_options['filters']['level_of_description_id']['id'] = 'level_of_description_id';
 $handler->display->display_options['filters']['level_of_description_id']['table'] = 'information_object';
 $handler->display->display_options['filters']['level_of_description_id']['field'] = 'level_of_description_id';
 $handler->display->display_options['filters']['level_of_description_id']['value']['value'] = '227';
 
-/* Display: Selection Page */
-$handler = $view->new_display('page', 'Selection Page', 'page');
-$handler->display->display_options['defaults']['title'] = FALSE;
-$handler->display->display_options['title'] = 'Finding Aids for Textual Materials';
-$handler->display->display_options['defaults']['header'] = FALSE;
-/* Header: Breadcrumb rewrite */
-$handler->display->display_options['header']['php']['id'] = 'php';
-$handler->display->display_options['header']['php']['table'] = 'views';
-$handler->display->display_options['header']['php']['field'] = 'php';
-$handler->display->display_options['header']['php']['ui_name'] = 'Breadcrumb rewrite';
-$handler->display->display_options['header']['php']['php_output'] = '<?php 
-//If you want to get the previous breadcrumbs
-//$breadcrumb[] = array_slice(drupal_get_breadcrumb(),0,4);
-//If you want the title of the current section
-//$breadcrumb[] = l($breadcrumb[] = drupal_get_title(),\'url\'); 
-
-$breadcrumb = array();
-$breadcrumb[] = l(\'Home\', \'<front>\');
-$breadcrumb[] = l(\'Archives\', \'archives\');
-$breadcrumb[] = l(\'Our Holdings\', \'archives/our_holdings\');
-
-//$breadcrumb[] = l(\'\', \'\'); //dummy breadcrumb because needs to tag on last element, basically the fonds list does have a title...
-
-
-//Because the title of a View cannot easily be set it\'s just adding the view title on here.
-//if ($view->current_display != "allfonds") {
-//  $breadcrumb[] = $view->result[0]->information_object_i18n_title;
-//}
-
-drupal_set_breadcrumb($breadcrumb); 
-?> </p>';
-$handler->display->display_options['defaults']['fields'] = FALSE;
-/* Field: Blank text field for the two attachments to latch onto */
-$handler->display->display_options['fields']['nothing']['id'] = 'nothing';
-$handler->display->display_options['fields']['nothing']['table'] = 'views';
-$handler->display->display_options['fields']['nothing']['field'] = 'nothing';
-$handler->display->display_options['fields']['nothing']['ui_name'] = 'Blank text field for the two attachments to latch onto';
-$handler->display->display_options['fields']['nothing']['label'] = '';
-$handler->display->display_options['fields']['nothing']['element_label_colon'] = FALSE;
-$handler->display->display_options['path'] = 'archives/holdings';
-$handler->display->display_options['menu']['title'] = 'Finding Aids for Textual Material';
-$handler->display->display_options['menu']['weight'] = '0';
-$handler->display->display_options['menu']['name'] = 'main-menu';
-$handler->display->display_options['menu']['context'] = 0;
-$handler->display->display_options['menu']['context_only_inline'] = 0;
-
-/* Display: alphabetical_list */
-$handler = $view->new_display('attachment', 'alphabetical_list', 'attachment_1');
-$handler->display->display_options['defaults']['css_class'] = FALSE;
-$handler->display->display_options['css_class'] = 'special-collection-by-alphabet first-time-invisible';
-$handler->display->display_options['pager']['type'] = 'none';
-$handler->display->display_options['pager']['options']['offset'] = '0';
+/* Display: FondSelctionPage */
+$handler = $view->new_display('page', 'FondSelctionPage', 'page');
 $handler->display->display_options['defaults']['style_plugin'] = FALSE;
 $handler->display->display_options['style_plugin'] = 'default';
-$handler->display->display_options['style_options']['grouping'] = array(
-  1 => array(
-    'field' => 'lettergroup',
-    'rendered' => 1,
-    'rendered_strip' => 0,
-  ),
-);
-$handler->display->display_options['defaults']['style_options'] = FALSE;
-$handler->display->display_options['defaults']['row_plugin'] = FALSE;
-$handler->display->display_options['row_plugin'] = 'fields';
-$handler->display->display_options['row_options']['hide_empty'] = TRUE;
-$handler->display->display_options['row_options']['default_field_elements'] = FALSE;
-$handler->display->display_options['defaults']['row_options'] = FALSE;
-$handler->display->display_options['defaults']['fields'] = FALSE;
-/* Field: AtoMitems: id */
-$handler->display->display_options['fields']['id']['id'] = 'id';
-$handler->display->display_options['fields']['id']['table'] = 'information_object';
-$handler->display->display_options['fields']['id']['field'] = 'id';
-$handler->display->display_options['fields']['id']['label'] = '';
-$handler->display->display_options['fields']['id']['exclude'] = TRUE;
-$handler->display->display_options['fields']['id']['element_label_colon'] = FALSE;
-$handler->display->display_options['fields']['id']['separator'] = '';
-/* Field: AtoMitems: Level of Description */
-$handler->display->display_options['fields']['level_of_description_id']['id'] = 'level_of_description_id';
-$handler->display->display_options['fields']['level_of_description_id']['table'] = 'information_object';
-$handler->display->display_options['fields']['level_of_description_id']['field'] = 'level_of_description_id';
-$handler->display->display_options['fields']['level_of_description_id']['label'] = '';
-$handler->display->display_options['fields']['level_of_description_id']['exclude'] = TRUE;
-$handler->display->display_options['fields']['level_of_description_id']['element_label_colon'] = FALSE;
-/* Field: AtoMitems: title */
-$handler->display->display_options['fields']['title']['id'] = 'title';
-$handler->display->display_options['fields']['title']['table'] = 'information_object_i18n';
-$handler->display->display_options['fields']['title']['field'] = 'title';
-$handler->display->display_options['fields']['title']['label'] = '';
-$handler->display->display_options['fields']['title']['alter']['make_link'] = TRUE;
-$handler->display->display_options['fields']['title']['alter']['path'] = 'archives/holdings/[id]';
-$handler->display->display_options['fields']['title']['alter']['trim_whitespace'] = TRUE;
-$handler->display->display_options['fields']['title']['element_label_colon'] = FALSE;
-$handler->display->display_options['fields']['title']['hide_empty'] = TRUE;
-$handler->display->display_options['fields']['title']['empty_zero'] = TRUE;
-/* Field: AtoMitems: Authorized form of name */
-$handler->display->display_options['fields']['authorized_form_of_name']['id'] = 'authorized_form_of_name';
-$handler->display->display_options['fields']['authorized_form_of_name']['table'] = 'actor_i18n';
-$handler->display->display_options['fields']['authorized_form_of_name']['field'] = 'authorized_form_of_name';
-$handler->display->display_options['fields']['authorized_form_of_name']['label'] = '';
-$handler->display->display_options['fields']['authorized_form_of_name']['exclude'] = TRUE;
-$handler->display->display_options['fields']['authorized_form_of_name']['alter']['alter_text'] = TRUE;
-$handler->display->display_options['fields']['authorized_form_of_name']['element_label_colon'] = FALSE;
-$handler->display->display_options['fields']['authorized_form_of_name']['hide_empty'] = TRUE;
-$handler->display->display_options['fields']['authorized_form_of_name']['empty_zero'] = TRUE;
-/* Field: AtoMitems: title (Letter group) */
-$handler->display->display_options['fields']['lettergroup']['id'] = 'lettergroup';
-$handler->display->display_options['fields']['lettergroup']['table'] = 'information_object_i18n';
-$handler->display->display_options['fields']['lettergroup']['field'] = 'lettergroup';
-$handler->display->display_options['fields']['lettergroup']['label'] = '';
-$handler->display->display_options['fields']['lettergroup']['exclude'] = TRUE;
-$handler->display->display_options['fields']['lettergroup']['element_label_colon'] = FALSE;
-$handler->display->display_options['defaults']['sorts'] = FALSE;
-/* Sort criterion: AtoMitems: Authorized form of name */
-$handler->display->display_options['sorts']['authorized_form_of_name']['id'] = 'authorized_form_of_name';
-$handler->display->display_options['sorts']['authorized_form_of_name']['table'] = 'actor_i18n';
-$handler->display->display_options['sorts']['authorized_form_of_name']['field'] = 'authorized_form_of_name';
-$handler->display->display_options['defaults']['filter_groups'] = FALSE;
-$handler->display->display_options['defaults']['filters'] = FALSE;
-/* Filter criterion: AtoMitems: Level of Description */
-$handler->display->display_options['filters']['level_of_description_id']['id'] = 'level_of_description_id';
-$handler->display->display_options['filters']['level_of_description_id']['table'] = 'information_object';
-$handler->display->display_options['filters']['level_of_description_id']['field'] = 'level_of_description_id';
-$handler->display->display_options['filters']['level_of_description_id']['value']['value'] = '227';
-/* Filter criterion: AtoMitems: Authorized form of name */
-$handler->display->display_options['filters']['authorized_form_of_name']['id'] = 'authorized_form_of_name';
-$handler->display->display_options['filters']['authorized_form_of_name']['table'] = 'actor_i18n';
-$handler->display->display_options['filters']['authorized_form_of_name']['field'] = 'authorized_form_of_name';
-$handler->display->display_options['filters']['authorized_form_of_name']['operator'] = '!=';
-$handler->display->display_options['field_config'] = array(
-  'id' => array(
-    'merge_option' => 'merge_unique',
-    'separator' => ', ',
-  ),
-  'level_of_description_id' => array(
-    'merge_option' => 'merge_unique',
-    'separator' => ', ',
-  ),
-  'title' => array(
-    'merge_option' => 'merge_unique',
-    'separator' => ',',
-  ),
-  'authorized_form_of_name' => array(
-    'merge_option' => 'merge_unique',
-    'separator' => ', ',
-  ),
-  'lettergroup' => array(
-    'merge_option' => 'merge_unique',
-    'separator' => ', ',
-  ),
-);
-$handler->display->display_options['displays'] = array(
-  'page' => 'page',
-  'default' => 0,
-);
-$handler->display->display_options['attachment_position'] = 'after';
-
-/* Display: category_list */
-$handler = $view->new_display('attachment', 'category_list', 'attachment_2');
-$handler->display->display_options['defaults']['css_class'] = FALSE;
-$handler->display->display_options['css_class'] = 'special-collection-by-category';
-$handler->display->display_options['pager']['type'] = 'none';
-$handler->display->display_options['pager']['options']['offset'] = '0';
-$handler->display->display_options['defaults']['style_plugin'] = FALSE;
-$handler->display->display_options['style_plugin'] = 'default';
-$handler->display->display_options['style_options']['grouping'] = array(
-  0 => array(
-    'field' => 'value',
-    'rendered' => 1,
-    'rendered_strip' => 0,
-  ),
-);
 $handler->display->display_options['style_options']['default_row_class'] = FALSE;
 $handler->display->display_options['style_options']['row_class_special'] = FALSE;
 $handler->display->display_options['defaults']['style_options'] = FALSE;
 $handler->display->display_options['defaults']['row_plugin'] = FALSE;
 $handler->display->display_options['row_plugin'] = 'fields';
-$handler->display->display_options['row_options']['hide_empty'] = TRUE;
 $handler->display->display_options['row_options']['default_field_elements'] = FALSE;
 $handler->display->display_options['defaults']['row_options'] = FALSE;
 $handler->display->display_options['defaults']['fields'] = FALSE;
@@ -255,51 +58,37 @@ $handler->display->display_options['fields']['id']['label'] = '';
 $handler->display->display_options['fields']['id']['exclude'] = TRUE;
 $handler->display->display_options['fields']['id']['element_label_colon'] = FALSE;
 $handler->display->display_options['fields']['id']['separator'] = '';
-/* Field: AtoMitems: Level of Description */
-$handler->display->display_options['fields']['level_of_description_id']['id'] = 'level_of_description_id';
-$handler->display->display_options['fields']['level_of_description_id']['table'] = 'information_object';
-$handler->display->display_options['fields']['level_of_description_id']['field'] = 'level_of_description_id';
-$handler->display->display_options['fields']['level_of_description_id']['label'] = '';
-$handler->display->display_options['fields']['level_of_description_id']['exclude'] = TRUE;
-$handler->display->display_options['fields']['level_of_description_id']['alter']['trim_whitespace'] = TRUE;
-$handler->display->display_options['fields']['level_of_description_id']['element_label_colon'] = FALSE;
-/* Field: AtoMitems: Identifier */
-$handler->display->display_options['fields']['identifier']['id'] = 'identifier';
-$handler->display->display_options['fields']['identifier']['table'] = 'information_object';
-$handler->display->display_options['fields']['identifier']['field'] = 'identifier';
-$handler->display->display_options['fields']['identifier']['label'] = '';
-$handler->display->display_options['fields']['identifier']['exclude'] = TRUE;
-$handler->display->display_options['fields']['identifier']['element_label_colon'] = FALSE;
 /* Field: AtoMitems: title */
 $handler->display->display_options['fields']['title']['id'] = 'title';
 $handler->display->display_options['fields']['title']['table'] = 'information_object_i18n';
 $handler->display->display_options['fields']['title']['field'] = 'title';
 $handler->display->display_options['fields']['title']['label'] = '';
 $handler->display->display_options['fields']['title']['alter']['make_link'] = TRUE;
-$handler->display->display_options['fields']['title']['alter']['path'] = 'archives/holdings/[id]';
+$handler->display->display_options['fields']['title']['alter']['path'] = '/archives/holdings/[id] ';
 $handler->display->display_options['fields']['title']['element_label_colon'] = FALSE;
-$handler->display->display_options['fields']['title']['hide_empty'] = TRUE;
-/* Field: Category name  */
-$handler->display->display_options['fields']['value']['id'] = 'value';
-$handler->display->display_options['fields']['value']['table'] = 'property_i18n';
-$handler->display->display_options['fields']['value']['field'] = 'value';
-$handler->display->display_options['fields']['value']['ui_name'] = 'Category name ';
-$handler->display->display_options['fields']['value']['label'] = '';
-$handler->display->display_options['fields']['value']['exclude'] = TRUE;
-$handler->display->display_options['fields']['value']['alter']['trim_whitespace'] = TRUE;
-$handler->display->display_options['fields']['value']['element_label_colon'] = FALSE;
-/* Field: AtoMitems: Authorized form of name */
-$handler->display->display_options['fields']['authorized_form_of_name']['id'] = 'authorized_form_of_name';
-$handler->display->display_options['fields']['authorized_form_of_name']['table'] = 'actor_i18n';
-$handler->display->display_options['fields']['authorized_form_of_name']['field'] = 'authorized_form_of_name';
-$handler->display->display_options['fields']['authorized_form_of_name']['label'] = '';
-$handler->display->display_options['fields']['authorized_form_of_name']['exclude'] = TRUE;
-$handler->display->display_options['fields']['authorized_form_of_name']['element_label_colon'] = FALSE;
-$handler->display->display_options['defaults']['sorts'] = FALSE;
-/* Sort criterion: AtoMitems: Authorized form of name */
-$handler->display->display_options['sorts']['authorized_form_of_name']['id'] = 'authorized_form_of_name';
-$handler->display->display_options['sorts']['authorized_form_of_name']['table'] = 'actor_i18n';
-$handler->display->display_options['sorts']['authorized_form_of_name']['field'] = 'authorized_form_of_name';
+$handler->display->display_options['fields']['title']['element_default_classes'] = FALSE;
+/* Field: Category Name */
+$handler->display->display_options['fields']['view']['id'] = 'view';
+$handler->display->display_options['fields']['view']['table'] = 'views';
+$handler->display->display_options['fields']['view']['field'] = 'view';
+$handler->display->display_options['fields']['view']['ui_name'] = 'Category Name';
+$handler->display->display_options['fields']['view']['label'] = '';
+$handler->display->display_options['fields']['view']['element_label_colon'] = FALSE;
+$handler->display->display_options['fields']['view']['element_default_classes'] = FALSE;
+$handler->display->display_options['fields']['view']['view'] = 'atomdrupalconnector_property';
+$handler->display->display_options['fields']['view']['display'] = 'block_1';
+$handler->display->display_options['fields']['view']['arguments'] = '[!id]';
+/* Field: Authorized form of name */
+$handler->display->display_options['fields']['view_1']['id'] = 'view_1';
+$handler->display->display_options['fields']['view_1']['table'] = 'views';
+$handler->display->display_options['fields']['view_1']['field'] = 'view';
+$handler->display->display_options['fields']['view_1']['ui_name'] = 'Authorized form of name';
+$handler->display->display_options['fields']['view_1']['label'] = '';
+$handler->display->display_options['fields']['view_1']['element_label_colon'] = FALSE;
+$handler->display->display_options['fields']['view_1']['element_default_classes'] = FALSE;
+$handler->display->display_options['fields']['view_1']['view'] = 'atomdrupalconnector_actor';
+$handler->display->display_options['fields']['view_1']['display'] = 'block_1';
+$handler->display->display_options['fields']['view_1']['arguments'] = '[!id]';
 $handler->display->display_options['defaults']['filter_groups'] = FALSE;
 $handler->display->display_options['defaults']['filters'] = FALSE;
 /* Filter criterion: AtoMitems: Level of Description */
@@ -307,44 +96,4 @@ $handler->display->display_options['filters']['level_of_description_id']['id'] =
 $handler->display->display_options['filters']['level_of_description_id']['table'] = 'information_object';
 $handler->display->display_options['filters']['level_of_description_id']['field'] = 'level_of_description_id';
 $handler->display->display_options['filters']['level_of_description_id']['value']['value'] = '227';
-/* Filter criterion: AtoMitems: Additional Attribute TYPE */
-$handler->display->display_options['filters']['scope']['id'] = 'scope';
-$handler->display->display_options['filters']['scope']['table'] = 'property';
-$handler->display->display_options['filters']['scope']['field'] = 'scope';
-$handler->display->display_options['filters']['scope']['value'] = 'alternativeIdentifiers';
-/* Filter criterion: AtoMitems: Authorized form of name */
-$handler->display->display_options['filters']['authorized_form_of_name']['id'] = 'authorized_form_of_name';
-$handler->display->display_options['filters']['authorized_form_of_name']['table'] = 'actor_i18n';
-$handler->display->display_options['filters']['authorized_form_of_name']['field'] = 'authorized_form_of_name';
-$handler->display->display_options['filters']['authorized_form_of_name']['operator'] = '!=';
-$handler->display->display_options['field_config'] = array(
-  'id' => array(
-    'merge_option' => 'merge_unique',
-    'separator' => ', ',
-  ),
-  'level_of_description_id' => array(
-    'merge_option' => 'merge_unique',
-    'separator' => ', ',
-  ),
-  'identifier' => array(
-    'merge_option' => 'merge_unique',
-    'separator' => ', ',
-  ),
-  'title' => array(
-    'merge_option' => 'merge_unique',
-    'separator' => ', ',
-  ),
-  'value' => array(
-    'merge_option' => 'merge_unique',
-    'separator' => ', ',
-  ),
-  'authorized_form_of_name' => array(
-    'merge_option' => 'merge_unique',
-    'separator' => ', ',
-  ),
-);
-$handler->display->display_options['displays'] = array(
-  'page' => 'page',
-  'default' => 0,
-);
-$handler->display->display_options['attachment_position'] = 'after';
+$handler->display->display_options['path'] = 'archives/holdings';

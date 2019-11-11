@@ -21,17 +21,20 @@
  * regardless of any changes in the aliasing that might happen if
  * the view is modified.
  */
+ //dpm($row->information_object_identifier);
+ //dpm($row->information_object_i18n_title);
  
- $fonds = arg(2); 
- $new_output = str_replace($row->information_object_id, $fonds, $output); 
+ $identifier = $row->information_object_identifier;  //2065-5-1 Fonds-Series-Subseries
+ $series_title = $row->information_object_i18n_title;
  
- if(function_exists('_pratt_get_href')) {
-	$href = _pratt_get_href($new_output);
-	$href = substr($href, 1);  //skip the leading slash
-	$new_output = l('Fonds', $href);
+ $identifier_sliced = explode('-', $identifier);
+ if(count($identifier_sliced) == 2) {
+	 $output = 'Series ' . $identifier_sliced[1] . ': ' . $series_title;
  }
  
- $output = $new_output;
+ if(count($identifier_sliced) == 3) {
+	 $output = 'Series ' . $identifier_sliced[1] . ', Sub-Series ' . $identifier_sliced[2] . ': ' . $series_title;
+ }
  
 ?>
 <?php print $output; ?>

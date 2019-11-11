@@ -136,7 +136,7 @@ if ($view->current_display != "allfonds") {
 }
 
 drupal_set_breadcrumb($breadcrumb); 
-?> </p>';
+?>';
 /* Header: Global: PHP */
 $handler->display->display_options['header']['php_1']['id'] = 'php_1';
 $handler->display->display_options['header']['php_1']['table'] = 'views';
@@ -151,7 +151,7 @@ $handler->display->display_options['header']['php_1']['php_output'] = '<?php
 //$view->result = $results;
 //$view->build_info[\'breadcrumb\'] = "";
 //dpm($view);
-?></p>
+?>
 ';
 $handler->display->display_options['defaults']['relationships'] = FALSE;
 $handler->display->display_options['defaults']['fields'] = FALSE;
@@ -353,6 +353,7 @@ $handler->display->display_options['fields']['view']['table'] = 'views';
 $handler->display->display_options['fields']['view']['field'] = 'view';
 $handler->display->display_options['fields']['view']['label'] = 'General Notes';
 $handler->display->display_options['fields']['view']['element_label_type'] = 'h2';
+$handler->display->display_options['fields']['view']['hide_empty'] = TRUE;
 $handler->display->display_options['fields']['view']['view'] = 'atomconnectornotes';
 $handler->display->display_options['fields']['view']['display'] = 'block_1';
 $handler->display->display_options['fields']['view']['arguments'] = '[!id]';
@@ -388,6 +389,7 @@ $handler->display->display_options['defaults']['arguments'] = FALSE;
 $handler->display->display_options['arguments']['id']['id'] = 'id';
 $handler->display->display_options['arguments']['id']['table'] = 'information_object';
 $handler->display->display_options['arguments']['id']['field'] = 'id';
+$handler->display->display_options['arguments']['id']['default_action'] = 'not found';
 $handler->display->display_options['arguments']['id']['default_argument_type'] = 'fixed';
 $handler->display->display_options['arguments']['id']['default_argument_options']['argument'] = '6798';
 $handler->display->display_options['arguments']['id']['summary']['number_of_records'] = '0';
@@ -516,6 +518,60 @@ $handler->display->display_options['row_options']['inline'] = array(
 $handler->display->display_options['row_options']['separator'] = '<br>';
 $handler->display->display_options['row_options']['hide_empty'] = TRUE;
 $handler->display->display_options['defaults']['row_options'] = FALSE;
+$handler->display->display_options['defaults']['header'] = FALSE;
+/* Header: Global: PHP */
+$handler->display->display_options['header']['php']['id'] = 'php';
+$handler->display->display_options['header']['php']['table'] = 'views';
+$handler->display->display_options['header']['php']['field'] = 'php';
+$handler->display->display_options['header']['php']['label'] = 'Breadcrumb Generator';
+$handler->display->display_options['header']['php']['empty'] = TRUE;
+$handler->display->display_options['header']['php']['php_output'] = '<?php 
+//If you want to get the previous breadcrumbs
+//$breadcrumb[] = array_slice(drupal_get_breadcrumb(),0,4);
+//If you want the title of the current section
+//$breadcrumb[] = l($breadcrumb[] = drupal_get_title(),\'url\'); 
+
+$breadcrumb = array();
+$breadcrumb[] = l(\'Home\', \'<front>\');
+$breadcrumb[] = l(\'Archives\', \'archives\');
+$breadcrumb[] = l(\'Our Holdings\', \'archives/our_holdings\');
+$breadcrumb[] = l(\'Finding Aid\', \'archives/holdings\');
+
+//This is getting the title by using the get title view, note it uses the hard coded view identifier
+if ($view->current_display == "series_page") {  
+  $breadcrumb[] = l(strip_tags($results[0]->views_field_view_view_2), \'archives/holdings/\' . $view->build_info[\'substitutions\'][\'%1\'], array(\'html\' => TRUE));
+}
+
+//adds sub series link if needed.  This uses a hardocded views view to find the sub series list
+
+if (isset($view->build_info[\'substitutions\'][\'%3\']) && ($view->build_info[\'substitutions\'][\'%3\'] != $view->build_info[\'substitutions\'][\'%2\'])) {
+  $breadcrumb[] = l(strip_tags($results[0]->views_field_view_view_3), \'archives/holdings/\' . $view->build_info[\'substitutions\'][\'%1\'] . \'/\' . $view->build_info[\'substitutions\'][\'%2\']);
+}
+
+
+//Because the title of a View cannot easily be set it\'s just adding the view title on here.
+if ($view->current_display != "allfonds") {
+  $breadcrumb[] = $view->result[0]->information_object_i18n_title;
+}
+
+drupal_set_breadcrumb($breadcrumb); 
+?>';
+/* Header: Global: PHP */
+$handler->display->display_options['header']['php_1']['id'] = 'php_1';
+$handler->display->display_options['header']['php_1']['table'] = 'views';
+$handler->display->display_options['header']['php_1']['field'] = 'php';
+$handler->display->display_options['header']['php_1']['label'] = 'Remove duplicate sections (doesn\'t work)';
+$handler->display->display_options['header']['php_1']['php_output'] = '<?php
+//This should be fixed by changing the MYSQL join in the AtoM connection module, TEMP FIX FOR NOW
+//this does not work, results is not returned...
+//$results = array_slice($results,0,1);
+//$results = $results[0];
+//dpm($view);
+//$view->result = $results;
+//$view->build_info[\'breadcrumb\'] = "";
+//dpm($view);
+?>
+';
 $handler->display->display_options['defaults']['relationships'] = FALSE;
 $handler->display->display_options['defaults']['fields'] = FALSE;
 /* Field: AtoMitems: Level of Description */
@@ -622,7 +678,7 @@ $handler->display->display_options['fields']['finding_aids']['hide_empty'] = TRU
 $handler->display->display_options['fields']['view_1']['id'] = 'view_1';
 $handler->display->display_options['fields']['view_1']['table'] = 'views';
 $handler->display->display_options['fields']['view_1']['field'] = 'view';
-$handler->display->display_options['fields']['view_1']['label'] = 'SubSeries';
+$handler->display->display_options['fields']['view_1']['label'] = 'Sub-series';
 $handler->display->display_options['fields']['view_1']['element_label_type'] = 'h2';
 $handler->display->display_options['fields']['view_1']['hide_empty'] = TRUE;
 $handler->display->display_options['fields']['view_1']['view'] = 'atomdrupalconnector';
@@ -957,7 +1013,9 @@ $handler = $view->new_display('block', 'SeriesListBlock', 'serieslist_block');
 $handler->display->display_options['defaults']['title'] = FALSE;
 $handler->display->display_options['title'] = 'Series:';
 $handler->display->display_options['defaults']['style_plugin'] = FALSE;
-$handler->display->display_options['style_plugin'] = 'default';
+$handler->display->display_options['style_plugin'] = 'list';
+$handler->display->display_options['style_options']['default_row_class'] = FALSE;
+$handler->display->display_options['style_options']['row_class_special'] = FALSE;
 $handler->display->display_options['defaults']['style_options'] = FALSE;
 $handler->display->display_options['defaults']['row_plugin'] = FALSE;
 $handler->display->display_options['row_plugin'] = 'fields';
@@ -1030,7 +1088,9 @@ $handler = $view->new_display('block', 'SubSeriesListBlock', 'subserieslist_bloc
 $handler->display->display_options['defaults']['title'] = FALSE;
 $handler->display->display_options['title'] = 'Series:';
 $handler->display->display_options['defaults']['style_plugin'] = FALSE;
-$handler->display->display_options['style_plugin'] = 'default';
+$handler->display->display_options['style_plugin'] = 'list';
+$handler->display->display_options['style_options']['default_row_class'] = FALSE;
+$handler->display->display_options['style_options']['row_class_special'] = FALSE;
 $handler->display->display_options['defaults']['style_options'] = FALSE;
 $handler->display->display_options['defaults']['row_plugin'] = FALSE;
 $handler->display->display_options['row_plugin'] = 'fields';
@@ -1127,6 +1187,8 @@ $handler->display->display_options['block_description'] = 'SeriesList';
 
 /* Display: In this Collection */
 $handler = $view->new_display('block', 'In this Collection', 'inthiscollection');
+$handler->display->display_options['defaults']['title'] = FALSE;
+$handler->display->display_options['title'] = 'In this Finding Aid';
 $handler->display->display_options['defaults']['css_class'] = FALSE;
 $handler->display->display_options['css_class'] = 'section_navigation';
 $handler->display->display_options['defaults']['style_plugin'] = FALSE;
@@ -1156,8 +1218,8 @@ $handler->display->display_options['footer']['php']['php_output'] = '<?php
 if (preg_match("/.*field-content archives_subseries_heading.*/", $view->result[0]->views_field_view_view_2))
 {
   print (\'
-    <div class="no-border" style="padding:20px">
-      <input type="checkbox" id="expandall"><label for="expandall">Show All Subseries</label>
+    <div class="no-border show_all_subseries_container">
+      <input type="checkbox" id="expandall"><label for="expandall">Show All Sub-series</label>
     </div>
   \');
 }
@@ -1263,7 +1325,6 @@ $handler->display->display_options['fields']['title']['label'] = '';
 $handler->display->display_options['fields']['title']['alter']['text'] = 'TITLE';
 $handler->display->display_options['fields']['title']['alter']['make_link'] = TRUE;
 $handler->display->display_options['fields']['title']['alter']['path'] = 'archives/holdings/[id]';
-$handler->display->display_options['fields']['title']['alter']['link_class'] = 'sidebar_active';
 $handler->display->display_options['fields']['title']['element_type'] = 'div';
 $handler->display->display_options['fields']['title']['element_class'] = 'sc_sidebar_header';
 $handler->display->display_options['fields']['title']['element_label_colon'] = FALSE;
@@ -1273,8 +1334,9 @@ $handler->display->display_options['fields']['view_2']['id'] = 'view_2';
 $handler->display->display_options['fields']['view_2']['table'] = 'views';
 $handler->display->display_options['fields']['view_2']['field'] = 'view';
 $handler->display->display_options['fields']['view_2']['ui_name'] = 'Series Sidebar View';
-$handler->display->display_options['fields']['view_2']['label'] = 'In this collection';
+$handler->display->display_options['fields']['view_2']['label'] = '';
 $handler->display->display_options['fields']['view_2']['element_label_class'] = 'section_navigation sc_sidebar_header sc_sidebar ';
+$handler->display->display_options['fields']['view_2']['element_label_colon'] = FALSE;
 $handler->display->display_options['fields']['view_2']['hide_empty'] = TRUE;
 $handler->display->display_options['fields']['view_2']['view'] = 'atomdrupalconnector';
 $handler->display->display_options['fields']['view_2']['display'] = 'series_side_bar';
@@ -1305,7 +1367,6 @@ $handler->display->display_options['defaults']['filters'] = FALSE;
 /* Display: Series Side Bar */
 $handler = $view->new_display('block', 'Series Side Bar', 'series_side_bar');
 $handler->display->display_options['defaults']['title'] = FALSE;
-$handler->display->display_options['title'] = 'In this collection';
 $handler->display->display_options['defaults']['style_plugin'] = FALSE;
 $handler->display->display_options['style_plugin'] = 'default';
 $handler->display->display_options['defaults']['style_options'] = FALSE;

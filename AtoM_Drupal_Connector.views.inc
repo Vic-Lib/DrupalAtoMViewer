@@ -259,6 +259,7 @@ function AtoM_Drupal_Connector_views_data() {
   $note_table = array('note',array(
     array ("string","id","Note ID","This is the notes id"),
     array ("string","object_id","AtoM object ID","This is the ID of the AtoM item the note is attached to"),
+    array ("string","source_culture","Language Tag","This is the language setting of the note which defines the title"),
     )
   );
   
@@ -269,6 +270,8 @@ function AtoM_Drupal_Connector_views_data() {
 
   $term_i18n_table = array('term_i18n',array(
     array ("string","name","Note title","This is the title of the general note attached to the atom record"),
+    array ("string","culture","Language Options","This is the language this term is in"),
+
     )
   );
 

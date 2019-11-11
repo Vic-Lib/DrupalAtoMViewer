@@ -40,6 +40,14 @@ $views_page = views_get_page_view();
 if(is_object($views_page) && $views_page->name == 'atomdrupalconnector'):
 ?>
 
+<!-- set up top info box (green area besides the top image) -->
+<script type="text/javascript">
+var selector = 'h1, .breadcrumb a:contains("Fonds")';
+var title = jQuery(selector).text();
+//console.log(text.trim());
+jQuery('#banner').after('<div id="top_info_box"><p>' + title + '</p></div>');
+</script>
+
 <style type="text/css">
 #banner {
 	background-color: #999;
@@ -68,99 +76,6 @@ if(is_object($views_page) && $views_page->name == 'atomdrupalconnector'):
 	text-transform: uppercase;
 	vertical-align: middle;
 }
-
-/* breadcrumb */
-.breadcrumb {
-    overflow: hidden;
-	white-space: nowrap;
-}
-
-.breadcrumb .selected {	
-	vertical-align: bottom;	
-}
-
-.breadcrumb a {
-	padding: 0;
-	display: inline-block;
-	vertical-align: bottom;
-    max-width: 100px;
-    white-space: nowrap;
-    overflow: hidden;
-    text-overflow: ellipsis;	
-}
-
-.breadcrumb a:hover {
-	max-width: none;
-}
-
-/* sidebar */
-.region-sidebar-first {
-	margin-top: 20px;
-}
-
-.region-sidebar-first .block-title {	
-	margin-left: 20px;
-	margin-bottom: 7px;
-	width: auto;
-}
-
-.sc_sidebar_header {
-	border-bottom: 0;
-	padding-left: 20px;
-	padding-bottom: 0;
-}
-
-.sc_sidebar_header a {
-	font-family: Verdana,Arial,Helvetica,sans-serif;
-	font-size: 13px;
-	text-transform: none;
-}
-
-.sc_sidebar_header a.active {
-	font-weight: bold;
-}
-
-.archives_subseries_heading {	
-	list-style-type: none;
-	padding-left: 38px;
-}
-
-/* Show All Subseries checkbox */
-.show_all_subseries_container {
-	padding: 0;
-	padding-top: 7px;
-	padding-left: 20px;
-	padding-bottom: 20px;
-}
-
-.show_all_subseries_container input[type="checkbox"] {
-	margin-left: 0;
-	margin-right: 7px;
-}
-
-.show_all_subseries_container input[type="checkbox"],
-.show_all_subseries_container label
-{	
-
-	display: inline-block;
-	color: #444;
-	font-family: Verdana,Arial,Helvetica,sans-serif;
-	font-weight: normal;
-	font-size: 13px;
-	vertical-align: middle;
-}
-
-/* make sure the contextual menu/gear icon displays properly */
-.region-content {
-	padding-left: 20px;
-	overflow: hidden;
-}
-
-/* content area */
-.view-atomdrupalconnector .item-list ul {	
-	margin-left: -20px;
-}
-
 </style>
 
 <?php endif; ?>
