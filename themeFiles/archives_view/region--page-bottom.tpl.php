@@ -24,6 +24,10 @@
  * @see template_preprocess_region()
  * @see zen_preprocess_region()
  * @see template_process()
+ * 
+ * TODO
+ * What is this for?
+ * 
  */
 ?>
 <?php if ($content): ?>

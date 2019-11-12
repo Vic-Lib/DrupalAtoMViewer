@@ -25,6 +25,10 @@
  * - $more: A link to view more, if any
  *
  * @ingroup views_templates
+ * 
+ * TODO
+ * What is this template for?
+ * 
  */
 ?>
 <div class="<?php print $classes; ?>">

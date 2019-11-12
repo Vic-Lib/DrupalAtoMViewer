@@ -1,11 +1,10 @@
+/*This styles the sidebar in the archives*/
+
+
+
 thead, th, tbody, td {
 	border: none;
 }
-
-#main-wrapper {
-	/* font:normal 11px/20px "Lucida Grande",Verdana,sans-serif !important; */
-}
-
 
 .fullwidtharchives {
 	width: 620px !important;
@@ -94,42 +93,3 @@ NOT apply the active css tag to a link
 }
 
 
-
-/*this indents the subseries */
-/*
-.archives_subseries_heading {
-	padding: 1px 0 1px 20px;
-}
-*/
-
-/*
-.sc_sidebar {
-	line-height:1.4em;
-	font-family: Verdana, Arial, Helvetica, sans-serif;
-	font-size: 1em;
-}
-*/
-
-
-
-/*
-.section_navigation label {
-	color: #444444;
-	display: inline;
-	font-size: 1.3em;
-	font-weight: normal;
-}
-
-.section_navigation_title {
-	font-size: 1.3em;
-}
-
-
-.sc_section_navigation a:hover { 
-	color: #37b5e2;
-}
-
-.sc_section_navigation {
-	margin-top: 0;
-}
-*/
