@@ -27,6 +27,7 @@ $handler->display->display_options['fields']['name']['field'] = 'name';
 $handler->display->display_options['fields']['name']['label'] = '';
 $handler->display->display_options['fields']['name']['element_type'] = 'h3';
 $handler->display->display_options['fields']['name']['element_label_colon'] = FALSE;
+$handler->display->display_options['fields']['name']['hide_empty'] = TRUE;
 /* Field: AtoMConnector_General Notes: Note content */
 $handler->display->display_options['fields']['content']['id'] = 'content';
 $handler->display->display_options['fields']['content']['table'] = 'note_i18n';
@@ -34,6 +35,7 @@ $handler->display->display_options['fields']['content']['field'] = 'content';
 $handler->display->display_options['fields']['content']['label'] = '';
 $handler->display->display_options['fields']['content']['element_type'] = 'p';
 $handler->display->display_options['fields']['content']['element_label_colon'] = FALSE;
+$handler->display->display_options['fields']['content']['hide_empty'] = TRUE;
 /* Contextual filter: AtoMConnector_General Notes: AtoM object ID */
 $handler->display->display_options['arguments']['object_id']['id'] = 'object_id';
 $handler->display->display_options['arguments']['object_id']['table'] = 'note';

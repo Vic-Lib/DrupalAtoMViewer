@@ -2,7 +2,7 @@
 
 /**
  * @file
- * This is the main module file for Views Database Connector.
+ * This is the main module file for the AtoM Drupal Connector.  It relies heavily on the Views Database Connector module.
  */
 
 /**

@@ -62,8 +62,8 @@ $handler->display->display_options['filters']['scope']['value'] = 'alternativeId
 /* Display: Block */
 $handler = $view->new_display('block', 'Block', 'block');
 
-/* Display: Categories */
-$handler = $view->new_display('block', 'Categories', 'block_1');
+/* Display: Category name */
+$handler = $view->new_display('block', 'Category name', 'block_1');
 $handler->display->display_options['defaults']['style_plugin'] = FALSE;
 $handler->display->display_options['style_plugin'] = 'default';
 $handler->display->display_options['style_options']['row_class'] = 'Category';

@@ -7,11 +7,11 @@ Clayfreeman came up with it and I stripped out everything except the MYSQL conne
 
 Description
 -----------
-Views Database Connector is a powerful module that gives Views full access to
-external database tables found in the settings for your Drupal installation.
-With this module, you can setup a view around any table in any database
-configuration. This can be extremely useful to pull external data from a
-database to show to your users in a view.
+Views Database Connector is a powerful module that gives Views full access to external database tables found in the settings for your Drupal installation. With this module, you can setup a view around any table in any database configuration. This can be extremely useful to pull external data from a database to show to your users in a view.
+
+The Drupal AtoM connector is a non generalized version of Views Database Connector, VDC was just used as a template.  In Drupal you can create blocks and add whatever sections you need based on an object.
+
+For example adding in a fonds you can link another view in fields of notes types and then link based on id.  Because there can be multiple notes etc... on one record it was easier to add the relations in the Drupal View rather than in the Database Connector
 
 Installation
 ------------
@@ -32,23 +32,12 @@ In your Drupal installation edit your sites settings.php file to include a secon
 
 Requirements and Limitations
 ----------------------------
-This module depends on access to the information_schema table when using MySQL
-or PostgreSQL. If using SQLite, access to the sqlite_master table is required.
-These tables are used to gather information about your tables and their
-respective column names and data types. If you cannot accommodate this
-requirement, this module will not work. Also, any table names that conflict
-with Drupal table names cannot be used, and any conflicting table names among
-external databases will also need to be resolved. These restrictions are in
-place because of the way that Views has structured the return value of its
-hook_views_data() API.
+This module depends on access to the information_schema table when using MySQL.  These tables are used to gather information about your tables and their respective column names and data types. If you cannot accommodate this requirement, this module will not work. Also, any table names that conflict with Drupal table names cannot be used, and any conflicting table names among external databases will also need to be resolved. These restrictions are in place because of the way that Views has structured the return value of its hook_views_data() API.
 
 Our setup
 ---------
 
-We are using it to display an AtoM collection and have a sidebar module 
-enabled as well.  This is just a JS picker that shows and hides two drupal 
-attachments and that script is in another module.  
-
+We are using it to display an AtoM collection and have a sidebar module enabled as well.  This is just a JS picker that shows and hides two drupal attachments and that script is in another module.  
 
 Utilization
 -----------

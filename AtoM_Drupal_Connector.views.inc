@@ -5,39 +5,15 @@
  * Responsible for hooking views to add each database and its tables.
  */
 
-/**
- * Implements hook_views_data().
- * Describes data tables (or the equivalent) to Views.
- * This hook should be placed in MODULENAME.views.inc and it will be auto loaded. MODULENAME.views.inc must be in the directory specified by the 'path' key returned by MODULENAME_views_api(), or the same directory as the .module file, if 'path' is unspecified.
- * Return value
- * array An associative array describing the data structure. Primary key is the name used internally by Views for the table(s) – usually the actual table name. The values for the key entries are described in detail below.
- * 
- * https://api.drupal.org/api/views/views.api.php/function/hook_views_data/7.x-3.x
- * 
-*/
 
-//This doesn't work, it sets it to the views main title, not to the rendered output value for that page
-/**
- * 
- * This function sets the TITLE of the View to the title of the AtoM node.  Probably not needed
- * The original idea, before I realized you can pre process in the header PHP code in the vew, was to set it up so it would add the title to the end of the breadcrumb.
- * 
- */
-
-function AtoM_Drupal_Connector_views_pre_render(&$view) {
-  if (($view->name == 'atomdrupalconnector') && (($view->current_display == 'fond_page')||($view->current_display == 'series_page'))) { 
-    //Disabled now, here's to enable it:
-    //$view->build_info['title'] = $view->result[0]->information_object_i18n_title;
-    /*
-    //This sets the breadcrumb trail so the end of it is the name of the current view
-    $view->build_info['breadcrumb']['atomdrupalconnector/all'] = $view->result[0]->information_object_i18n_title;    
-    $view->build_info['breadcrumb']['breadcrumb_args'] = $view->result[0]->information_object_i18n_title;
-    */
-  }
-}
 
 /**
- * Helper function to create a properly formatted data object that views will accept
+ * Helper function to create a properly formatted data object that views will accept.  
+ * 
+ * $table, $data -- a table of values to add and the data file that the hook eventually returns
+ * 
+ * Returns $data with the table data added in with the correct metadata attached for the respective datatype
+ * 
  */
 
 function Add_column_to_data($table, $data) {
@@ -124,9 +100,15 @@ function Add_column_to_data($table, $data) {
 } 
 
 /**
- * implements hook_views_data()
- * This defines the relationships between elements in the AtoM database and then sends that relationship information to Views so it can properly display it
- */
+ * Implements hook_views_data().
+ * Describes data tables (or the equivalent) to Views.
+ * This hook should be placed in MODULENAME.views.inc and it will be auto loaded. MODULENAME.views.inc must be in the directory specified by the 'path' key returned by MODULENAME_views_api(), or the same directory as the .module file, if 'path' is unspecified.
+ * Return value
+ * array An associative array describing the data structure. Primary key is the name used internally by Views for the table(s) – usually the actual table name. The values for the key entries are described in detail below.
+ * 
+ * https://api.drupal.org/api/views/views.api.php/function/hook_views_data/7.x-3.x
+ * 
+*/
 
 function AtoM_Drupal_Connector_views_data() {
 
@@ -137,13 +119,13 @@ function AtoM_Drupal_Connector_views_data() {
   ///////// Database relationship to the entity
   ////////////////////////////////////////////////////////////////////
 
-  //Define tables
+  //Define tables in the database
   
   $data['information_object']['table']['group'] = t('AtoMitems');
   $data['information_object_i18n']['table']['group'] = t("AtoMitems");
   $data['digital_object']['table']['group'] = t("AtoMitems");
 
-  //Define Joins
+  //Define Joins betwixt the tables
 
   //This is the base AtoM node definition for entering the view.
   $data['information_object']['table']['base'] = array(
@@ -170,13 +152,13 @@ function AtoM_Drupal_Connector_views_data() {
   );
 
   //Define table elements and give plain text description
+  //array ("string","object_id","Object ID","The index of actors related to this collection"),
 
   $io_table = array('information_object',array(
     array ("numeric","id","id","The AtoM id"),
     array ("numeric","level_of_description_id","Level of Description","This is the AtoM node type, fonds 227, series 230, subseries 231, file 232"),
     array ("numeric","parent_id","Parent ID","This is the parent of the AtoM node, so for a file it would be a series"),
     array ("string","identifier","Identifier","The fonds or location of the collection or object"),
-    //array ("string","object_id","Object ID","The index of actors related to this collection"),
   ));
 
 

@@ -24,6 +24,7 @@ $handler->display->display_options['row_plugin'] = 'fields';
 $handler->display->display_options['fields']['authorized_form_of_name']['id'] = 'authorized_form_of_name';
 $handler->display->display_options['fields']['authorized_form_of_name']['table'] = 'actor_i18n';
 $handler->display->display_options['fields']['authorized_form_of_name']['field'] = 'authorized_form_of_name';
+$handler->display->display_options['fields']['authorized_form_of_name']['label'] = 'Name of Creator';
 $handler->display->display_options['fields']['authorized_form_of_name']['element_type'] = 'p';
 $handler->display->display_options['fields']['authorized_form_of_name']['element_label_type'] = 'h2';
 /* Field: AtoMitems: History */
@@ -86,14 +87,19 @@ $handler->display->display_options['fields']['php']['element_default_classes'] =
 $handler->display->display_options['fields']['php']['use_php_setup'] = 0;
 $handler->display->display_options['fields']['php']['php_output'] = '<?php 
 $category = "[Non String]";
+$authorized_form_of_name = $row->authorized_form_of_name;
+//shorten name, the function is in sites/all/themes/pratt/template.php
+if(function_exists(\'_pratt_archives_shorten_title\')) {
+  $authorized_form_of_name = _pratt_archives_shorten_title($authorized_form_of_name );
+}
 
 foreach (["[A-C]","[D-F]","[G-I]","[J-L]","[M-O]","[P-R]","[S-U]","[V-Z]"] as $matcher)
 //for ($matcher in ["[A-C]"] ) 
 {
-  if (preg_match ("/^".$matcher."+/",strtoupper($row->authorized_form_of_name[0]))) $category = $matcher;
+  if (preg_match ("/^".$matcher."+/",strtoupper($authorized_form_of_name[0]))) $category = $matcher;
 }
 
-echo "<div id=\'Alphabetical\'>$category</div>";
+echo "<div id=\'Alphabetical\' data-authorized-name=\'$authorized_form_of_name\'>$category</div>";
 ?>';
 $handler->display->display_options['fields']['php']['use_php_click_sortable'] = '0';
 $handler->display->display_options['fields']['php']['php_click_sortable'] = '';
