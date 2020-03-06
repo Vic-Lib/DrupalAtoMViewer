@@ -96,3 +96,35 @@ $handler->display->display_options['filters']['name']['id'] = 'name';
 $handler->display->display_options['filters']['name']['table'] = 'property';
 $handler->display->display_options['filters']['name']['field'] = 'name';
 $handler->display->display_options['filters']['name']['value'] = 'Category';
+
+/* Display: Language of material */
+$handler = $view->new_display('block', 'Language of material', 'block_2');
+$handler->display->display_options['defaults']['fields'] = FALSE;
+/* Field: AtoMitems: Object ID */
+$handler->display->display_options['fields']['object_id']['id'] = 'object_id';
+$handler->display->display_options['fields']['object_id']['table'] = 'property';
+$handler->display->display_options['fields']['object_id']['field'] = 'object_id';
+$handler->display->display_options['fields']['object_id']['label'] = '';
+$handler->display->display_options['fields']['object_id']['exclude'] = TRUE;
+$handler->display->display_options['fields']['object_id']['element_label_colon'] = FALSE;
+/* Field: AtoMitems: Additional Attribute VALUE */
+$handler->display->display_options['fields']['value']['id'] = 'value';
+$handler->display->display_options['fields']['value']['table'] = 'property_i18n';
+$handler->display->display_options['fields']['value']['field'] = 'value';
+$handler->display->display_options['fields']['value']['label'] = '';
+$handler->display->display_options['fields']['value']['element_type'] = 'p';
+$handler->display->display_options['fields']['value']['element_label_colon'] = FALSE;
+$handler->display->display_options['defaults']['filter_groups'] = FALSE;
+$handler->display->display_options['defaults']['filters'] = FALSE;
+/* Filter criterion: AtoMitems: Additional Attribute NAME */
+$handler->display->display_options['filters']['name']['id'] = 'name';
+$handler->display->display_options['filters']['name']['table'] = 'property';
+$handler->display->display_options['filters']['name']['field'] = 'name';
+$handler->display->display_options['filters']['name']['value'] = 'language';
+/* Filter criterion: Global: PHP */
+$handler->display->display_options['filters']['php']['id'] = 'php';
+$handler->display->display_options['filters']['php']['table'] = 'views';
+$handler->display->display_options['filters']['php']['field'] = 'php';
+$handler->display->display_options['filters']['php']['use_php_setup'] = 0;
+$handler->display->display_options['filters']['php']['php_filter'] = 'return ($row->object_id == "28296");
+';

@@ -351,6 +351,7 @@ $handler->display->display_options['fields']['related_units_of_description_1']['
 $handler->display->display_options['fields']['related_units_of_description_1']['element_type'] = 'p';
 $handler->display->display_options['fields']['related_units_of_description_1']['element_class'] = 'fullwidtharchives';
 $handler->display->display_options['fields']['related_units_of_description_1']['element_label_type'] = 'h2';
+$handler->display->display_options['fields']['related_units_of_description_1']['element_label_colon'] = FALSE;
 $handler->display->display_options['fields']['related_units_of_description_1']['hide_empty'] = TRUE;
 /* Field: Global: PHP */
 $handler->display->display_options['fields']['php']['id'] = 'php';
@@ -361,6 +362,7 @@ $handler->display->display_options['fields']['php']['exclude'] = TRUE;
 $handler->display->display_options['fields']['php']['element_type'] = 'p';
 $handler->display->display_options['fields']['php']['element_class'] = 'fullwidtharchives';
 $handler->display->display_options['fields']['php']['element_label_type'] = 'h2';
+$handler->display->display_options['fields']['php']['element_label_colon'] = FALSE;
 $handler->display->display_options['fields']['php']['use_php_setup'] = 0;
 $handler->display->display_options['fields']['php']['php_output'] = '<?php
 $url = $row->title;
@@ -391,6 +393,17 @@ $handler->display->display_options['fields']['view_1']['hide_empty'] = TRUE;
 $handler->display->display_options['fields']['view_1']['view'] = 'atomdrupalconnector';
 $handler->display->display_options['fields']['view_1']['display'] = 'filelist_block';
 $handler->display->display_options['fields']['view_1']['arguments'] = '1/1/1/1/1';
+/* Field: View Connector Language of Materials */
+$handler->display->display_options['fields']['view_6']['id'] = 'view_6';
+$handler->display->display_options['fields']['view_6']['table'] = 'views';
+$handler->display->display_options['fields']['view_6']['field'] = 'view';
+$handler->display->display_options['fields']['view_6']['ui_name'] = 'View Connector Language of Materials';
+$handler->display->display_options['fields']['view_6']['label'] = 'Language of Materials';
+$handler->display->display_options['fields']['view_6']['element_label_type'] = 'h2';
+$handler->display->display_options['fields']['view_6']['element_label_colon'] = FALSE;
+$handler->display->display_options['fields']['view_6']['view'] = 'atomdrupalconnector_property';
+$handler->display->display_options['fields']['view_6']['display'] = 'block_2';
+$handler->display->display_options['fields']['view_6']['arguments'] = '[!id]';
 $handler->display->display_options['defaults']['arguments'] = FALSE;
 /* Contextual filter: AtoMitems: id */
 $handler->display->display_options['arguments']['id']['id'] = 'id';

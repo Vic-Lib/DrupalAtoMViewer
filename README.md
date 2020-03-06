@@ -55,3 +55,12 @@ Issues
 * There are some unlabled fields and not every field has been transfered into the module
 * The naming convention isn't formalized
 * It has only been tested with AtoM version 2.4.0 - 156
+
+
+Creating views
+--------------
+
+Properties and notes has a lot.  Language of material is under properties for example
+
+For the relations you have to set them internally as views linking views.  If you build the relationships into the connector directly then you lose a lot of the styling options.  Thus I have created a few connection endpoint view types.  Use view connector and pass the id as the contextual filter, then the property, notes, etc... type can pull those fields.  You can filter by type, such as type=alternativeidentifier to get the alternative identifiers.
+
