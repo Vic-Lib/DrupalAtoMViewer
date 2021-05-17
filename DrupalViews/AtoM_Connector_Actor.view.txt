@@ -50,6 +50,27 @@ $handler->display->display_options['arguments']['object_id']['limit'] = '0';
 
 /* Display: Block */
 $handler = $view->new_display('block', 'Block', 'block');
+$handler->display->display_options['defaults']['fields'] = FALSE;
+/* Field: AtoMitems: Authorized form of name */
+$handler->display->display_options['fields']['authorized_form_of_name']['id'] = 'authorized_form_of_name';
+$handler->display->display_options['fields']['authorized_form_of_name']['table'] = 'actor_i18n';
+$handler->display->display_options['fields']['authorized_form_of_name']['field'] = 'authorized_form_of_name';
+$handler->display->display_options['fields']['authorized_form_of_name']['label'] = 'Name of Creator';
+$handler->display->display_options['fields']['authorized_form_of_name']['exclude'] = TRUE;
+$handler->display->display_options['fields']['authorized_form_of_name']['element_type'] = 'p';
+$handler->display->display_options['fields']['authorized_form_of_name']['element_label_type'] = 'h2';
+/* Field: AtoMitems: History */
+$handler->display->display_options['fields']['history']['id'] = 'history';
+$handler->display->display_options['fields']['history']['table'] = 'actor_i18n';
+$handler->display->display_options['fields']['history']['field'] = 'history';
+$handler->display->display_options['fields']['history']['element_type'] = 'p';
+$handler->display->display_options['fields']['history']['element_label_type'] = 'h2';
+$handler->display->display_options['fields']['history']['element_label_colon'] = FALSE;
+/* Field: AtoMitems: Object ID */
+$handler->display->display_options['fields']['object_id']['id'] = 'object_id';
+$handler->display->display_options['fields']['object_id']['table'] = 'event';
+$handler->display->display_options['fields']['object_id']['field'] = 'object_id';
+$handler->display->display_options['fields']['object_id']['exclude'] = TRUE;
 
 /* Display: Authorized Form of Name */
 $handler = $view->new_display('block', 'Authorized Form of Name', 'block_1');
@@ -103,6 +124,55 @@ echo "<div id=\'Alphabetical\' data-authorized-name=\'$authorized_form_of_name\'
 ?>';
 $handler->display->display_options['fields']['php']['use_php_click_sortable'] = '0';
 $handler->display->display_options['fields']['php']['php_click_sortable'] = '';
+$handler->display->display_options['defaults']['sorts'] = FALSE;
+$handler->display->display_options['defaults']['filter_groups'] = FALSE;
+$handler->display->display_options['defaults']['filters'] = FALSE;
+
+/* Display: Name of Creator */
+$handler = $view->new_display('block', 'Name of Creator', 'block_2');
+$handler->display->display_options['defaults']['style_plugin'] = FALSE;
+$handler->display->display_options['style_plugin'] = 'default';
+$handler->display->display_options['style_options']['default_row_class'] = FALSE;
+$handler->display->display_options['style_options']['row_class_special'] = FALSE;
+$handler->display->display_options['defaults']['style_options'] = FALSE;
+$handler->display->display_options['defaults']['row_plugin'] = FALSE;
+$handler->display->display_options['row_plugin'] = 'fields';
+$handler->display->display_options['row_options']['default_field_elements'] = FALSE;
+$handler->display->display_options['defaults']['row_options'] = FALSE;
+$handler->display->display_options['defaults']['fields'] = FALSE;
+/* Field: AtoMitems: Authorized form of name */
+$handler->display->display_options['fields']['authorized_form_of_name']['id'] = 'authorized_form_of_name';
+$handler->display->display_options['fields']['authorized_form_of_name']['table'] = 'actor_i18n';
+$handler->display->display_options['fields']['authorized_form_of_name']['field'] = 'authorized_form_of_name';
+$handler->display->display_options['fields']['authorized_form_of_name']['label'] = 'Name of Creator';
+$handler->display->display_options['fields']['authorized_form_of_name']['element_type'] = 'p';
+$handler->display->display_options['fields']['authorized_form_of_name']['element_label_type'] = 'h3';
+$handler->display->display_options['fields']['authorized_form_of_name']['element_label_colon'] = FALSE;
+$handler->display->display_options['defaults']['sorts'] = FALSE;
+$handler->display->display_options['defaults']['filter_groups'] = FALSE;
+$handler->display->display_options['defaults']['filters'] = FALSE;
+
+/* Display: Administrative History */
+$handler = $view->new_display('block', 'Administrative History', 'block_3');
+$handler->display->display_options['defaults']['style_plugin'] = FALSE;
+$handler->display->display_options['style_plugin'] = 'default';
+$handler->display->display_options['style_options']['default_row_class'] = FALSE;
+$handler->display->display_options['style_options']['row_class_special'] = FALSE;
+$handler->display->display_options['defaults']['style_options'] = FALSE;
+$handler->display->display_options['defaults']['row_plugin'] = FALSE;
+$handler->display->display_options['row_plugin'] = 'fields';
+$handler->display->display_options['row_options']['default_field_elements'] = FALSE;
+$handler->display->display_options['defaults']['row_options'] = FALSE;
+$handler->display->display_options['defaults']['fields'] = FALSE;
+/* Field: AtoMitems: History */
+$handler->display->display_options['fields']['history']['id'] = 'history';
+$handler->display->display_options['fields']['history']['table'] = 'actor_i18n';
+$handler->display->display_options['fields']['history']['field'] = 'history';
+$handler->display->display_options['fields']['history']['label'] = 'Administrative History';
+$handler->display->display_options['fields']['history']['alter']['nl2br'] = TRUE;
+$handler->display->display_options['fields']['history']['element_type'] = 'p';
+$handler->display->display_options['fields']['history']['element_label_type'] = 'h2';
+$handler->display->display_options['fields']['history']['element_label_colon'] = FALSE;
 $handler->display->display_options['defaults']['sorts'] = FALSE;
 $handler->display->display_options['defaults']['filter_groups'] = FALSE;
 $handler->display->display_options['defaults']['filters'] = FALSE;

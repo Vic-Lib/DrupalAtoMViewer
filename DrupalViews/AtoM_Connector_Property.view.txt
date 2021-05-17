@@ -61,6 +61,31 @@ $handler->display->display_options['filters']['scope']['value'] = 'alternativeId
 
 /* Display: Block */
 $handler = $view->new_display('block', 'Block', 'block');
+$handler->display->display_options['defaults']['fields'] = FALSE;
+/* Field: AtoMitems: Object ID */
+$handler->display->display_options['fields']['object_id']['id'] = 'object_id';
+$handler->display->display_options['fields']['object_id']['table'] = 'property';
+$handler->display->display_options['fields']['object_id']['field'] = 'object_id';
+$handler->display->display_options['fields']['object_id']['exclude'] = TRUE;
+/* Field: AtoMitems: Additional Attribute NAME */
+$handler->display->display_options['fields']['name']['id'] = 'name';
+$handler->display->display_options['fields']['name']['table'] = 'property';
+$handler->display->display_options['fields']['name']['field'] = 'name';
+$handler->display->display_options['fields']['name']['label'] = '';
+$handler->display->display_options['fields']['name']['element_type'] = 'h3';
+$handler->display->display_options['fields']['name']['element_label_colon'] = FALSE;
+/* Field: AtoMitems: Additional Attribute TYPE */
+$handler->display->display_options['fields']['scope']['id'] = 'scope';
+$handler->display->display_options['fields']['scope']['table'] = 'property';
+$handler->display->display_options['fields']['scope']['field'] = 'scope';
+$handler->display->display_options['fields']['scope']['exclude'] = TRUE;
+/* Field: AtoMitems: Additional Attribute VALUE */
+$handler->display->display_options['fields']['value']['id'] = 'value';
+$handler->display->display_options['fields']['value']['table'] = 'property_i18n';
+$handler->display->display_options['fields']['value']['field'] = 'value';
+$handler->display->display_options['fields']['value']['label'] = '';
+$handler->display->display_options['fields']['value']['element_type'] = 'p';
+$handler->display->display_options['fields']['value']['element_label_colon'] = FALSE;
 
 /* Display: Category name */
 $handler = $view->new_display('block', 'Category name', 'block_1');
@@ -112,8 +137,35 @@ $handler->display->display_options['fields']['value']['id'] = 'value';
 $handler->display->display_options['fields']['value']['table'] = 'property_i18n';
 $handler->display->display_options['fields']['value']['field'] = 'value';
 $handler->display->display_options['fields']['value']['label'] = '';
+$handler->display->display_options['fields']['value']['exclude'] = TRUE;
 $handler->display->display_options['fields']['value']['element_type'] = 'p';
 $handler->display->display_options['fields']['value']['element_label_colon'] = FALSE;
+/* Field: ISO language code converted to English */
+$handler->display->display_options['fields']['php']['id'] = 'php';
+$handler->display->display_options['fields']['php']['table'] = 'views';
+$handler->display->display_options['fields']['php']['field'] = 'php';
+$handler->display->display_options['fields']['php']['ui_name'] = 'ISO language code converted to English';
+$handler->display->display_options['fields']['php']['label'] = 'Language of Material';
+$handler->display->display_options['fields']['php']['element_type'] = 'p';
+$handler->display->display_options['fields']['php']['element_label_type'] = 'h3';
+$handler->display->display_options['fields']['php']['element_label_colon'] = FALSE;
+$handler->display->display_options['fields']['php']['use_php_setup'] = 0;
+$handler->display->display_options['fields']['php']['php_output'] = '<?php
+
+//sudo apt-get install php-intl
+
+preg_match_all (\'/".*?"/\',\'{i:0;s:2:"en";i:1;s:2:"fr";}\',$output);
+
+$returnVar = "";
+
+foreach ($output[0] as $language) {
+  $returnVar .= locale_get_display_language(substr($language,1,-1), \'en\') . ", ";
+}
+
+print substr($returnVar,0,-2).".";                                                                                         
+?>';
+$handler->display->display_options['fields']['php']['use_php_click_sortable'] = '0';
+$handler->display->display_options['fields']['php']['php_click_sortable'] = '';
 $handler->display->display_options['defaults']['filter_groups'] = FALSE;
 $handler->display->display_options['defaults']['filters'] = FALSE;
 /* Filter criterion: AtoMitems: Additional Attribute NAME */
@@ -128,3 +180,56 @@ $handler->display->display_options['filters']['php']['field'] = 'php';
 $handler->display->display_options['filters']['php']['use_php_setup'] = 0;
 $handler->display->display_options['filters']['php']['php_filter'] = 'return ($row->object_id == "28296");
 ';
+
+/* Display: Script of material */
+$handler = $view->new_display('block', 'Script of material', 'block_3');
+$handler->display->display_options['defaults']['fields'] = FALSE;
+/* Field: AtoMitems: Object ID */
+$handler->display->display_options['fields']['object_id']['id'] = 'object_id';
+$handler->display->display_options['fields']['object_id']['table'] = 'property';
+$handler->display->display_options['fields']['object_id']['field'] = 'object_id';
+$handler->display->display_options['fields']['object_id']['label'] = '';
+$handler->display->display_options['fields']['object_id']['exclude'] = TRUE;
+$handler->display->display_options['fields']['object_id']['element_label_colon'] = FALSE;
+/* Field: AtoMitems: Additional Attribute VALUE */
+$handler->display->display_options['fields']['value']['id'] = 'value';
+$handler->display->display_options['fields']['value']['table'] = 'property_i18n';
+$handler->display->display_options['fields']['value']['field'] = 'value';
+$handler->display->display_options['fields']['value']['label'] = '';
+$handler->display->display_options['fields']['value']['exclude'] = TRUE;
+$handler->display->display_options['fields']['value']['element_type'] = 'p';
+$handler->display->display_options['fields']['value']['element_label_colon'] = FALSE;
+/* Field: ISO language code converted to English */
+$handler->display->display_options['fields']['php']['id'] = 'php';
+$handler->display->display_options['fields']['php']['table'] = 'views';
+$handler->display->display_options['fields']['php']['field'] = 'php';
+$handler->display->display_options['fields']['php']['ui_name'] = 'ISO language code converted to English';
+$handler->display->display_options['fields']['php']['label'] = 'Script of Material';
+$handler->display->display_options['fields']['php']['element_type'] = 'p';
+$handler->display->display_options['fields']['php']['element_label_type'] = 'h3';
+$handler->display->display_options['fields']['php']['element_label_colon'] = FALSE;
+$handler->display->display_options['fields']['php']['use_php_setup'] = 0;
+$handler->display->display_options['fields']['php']['php_output'] = '<?php
+
+//sudo apt-get install php-intl
+
+preg_match_all (\'/".*?"/\',\'{i:0;s:2:"en";i:1;s:2:"fr";}\',$output);
+
+$returnVar = "";
+
+foreach ($output[0] as $language) {
+  $returnVar .= locale_get_display_language(substr($language,1,-1), \'en\') . ", ";
+}
+
+print substr($returnVar,0,-2).".";                                                                                         
+?>';
+$handler->display->display_options['fields']['php']['use_php_click_sortable'] = '0';
+$handler->display->display_options['fields']['php']['php_click_sortable'] = '';
+$handler->display->display_options['defaults']['filter_groups'] = FALSE;
+$handler->display->display_options['defaults']['filters'] = FALSE;
+/* Filter criterion: AtoMitems: Additional Attribute NAME */
+$handler->display->display_options['filters']['name']['id'] = 'name';
+$handler->display->display_options['filters']['name']['table'] = 'property';
+$handler->display->display_options['filters']['name']['field'] = 'name';
+$handler->display->display_options['filters']['name']['value'] = 'script';
+$handler->display->display_options['filters']['name']['group'] = 1;

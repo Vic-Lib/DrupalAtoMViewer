@@ -55,7 +55,7 @@ $handler->display->display_options['fields']['date']['id'] = 'date';
 $handler->display->display_options['fields']['date']['table'] = 'event_i18n';
 $handler->display->display_options['fields']['date']['field'] = 'date';
 $handler->display->display_options['fields']['date']['label'] = '';
-$handler->display->display_options['fields']['date']['element_label_type'] = 'h2';
+$handler->display->display_options['fields']['date']['element_type'] = 'p';
 $handler->display->display_options['fields']['date']['element_label_colon'] = FALSE;
 $handler->display->display_options['fields']['date']['hide_empty'] = TRUE;
 

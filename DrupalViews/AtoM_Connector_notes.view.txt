@@ -54,3 +54,202 @@ $handler->display->display_options['filters']['culture']['value'] = 'en';
 
 /* Display: Block */
 $handler = $view->new_display('block', 'Block', 'block_1');
+
+/* Display: General Note Field */
+$handler = $view->new_display('block', 'General Note Field', 'block_2');
+$handler->display->display_options['defaults']['fields'] = FALSE;
+/* Field: AtoMConnector_General Notes: Note title */
+$handler->display->display_options['fields']['name']['id'] = 'name';
+$handler->display->display_options['fields']['name']['table'] = 'term_i18n';
+$handler->display->display_options['fields']['name']['field'] = 'name';
+$handler->display->display_options['fields']['name']['label'] = '';
+$handler->display->display_options['fields']['name']['exclude'] = TRUE;
+$handler->display->display_options['fields']['name']['alter']['nl2br'] = TRUE;
+$handler->display->display_options['fields']['name']['element_type'] = 'h3';
+$handler->display->display_options['fields']['name']['element_label_colon'] = FALSE;
+$handler->display->display_options['fields']['name']['hide_empty'] = TRUE;
+/* Field: AtoMConnector_General Notes: Note content */
+$handler->display->display_options['fields']['content']['id'] = 'content';
+$handler->display->display_options['fields']['content']['table'] = 'note_i18n';
+$handler->display->display_options['fields']['content']['field'] = 'content';
+$handler->display->display_options['fields']['content']['label'] = 'General Notes';
+$handler->display->display_options['fields']['content']['alter']['nl2br'] = TRUE;
+$handler->display->display_options['fields']['content']['element_type'] = 'p';
+$handler->display->display_options['fields']['content']['element_label_type'] = 'h3';
+$handler->display->display_options['fields']['content']['element_label_colon'] = FALSE;
+$handler->display->display_options['fields']['content']['hide_empty'] = TRUE;
+$handler->display->display_options['defaults']['filter_groups'] = FALSE;
+$handler->display->display_options['defaults']['filters'] = FALSE;
+/* Filter criterion: AtoMConnector_General Notes: Language Options */
+$handler->display->display_options['filters']['culture']['id'] = 'culture';
+$handler->display->display_options['filters']['culture']['table'] = 'term_i18n';
+$handler->display->display_options['filters']['culture']['field'] = 'culture';
+$handler->display->display_options['filters']['culture']['value'] = 'en';
+/* Filter criterion: AtoMConnector_General Notes: Note title */
+$handler->display->display_options['filters']['name']['id'] = 'name';
+$handler->display->display_options['filters']['name']['table'] = 'term_i18n';
+$handler->display->display_options['filters']['name']['field'] = 'name';
+$handler->display->display_options['filters']['name']['value'] = 'General note';
+
+/* Display: Other notes fields */
+$handler = $view->new_display('block', 'Other notes fields', 'block_3');
+$handler->display->display_options['defaults']['fields'] = FALSE;
+/* Field: AtoMConnector_General Notes: Note title */
+$handler->display->display_options['fields']['name']['id'] = 'name';
+$handler->display->display_options['fields']['name']['table'] = 'term_i18n';
+$handler->display->display_options['fields']['name']['field'] = 'name';
+$handler->display->display_options['fields']['name']['label'] = '';
+$handler->display->display_options['fields']['name']['alter']['nl2br'] = TRUE;
+$handler->display->display_options['fields']['name']['element_type'] = 'h3';
+$handler->display->display_options['fields']['name']['element_label_colon'] = FALSE;
+$handler->display->display_options['fields']['name']['hide_empty'] = TRUE;
+/* Field: AtoMConnector_General Notes: Note content */
+$handler->display->display_options['fields']['content']['id'] = 'content';
+$handler->display->display_options['fields']['content']['table'] = 'note_i18n';
+$handler->display->display_options['fields']['content']['field'] = 'content';
+$handler->display->display_options['fields']['content']['label'] = '';
+$handler->display->display_options['fields']['content']['alter']['nl2br'] = TRUE;
+$handler->display->display_options['fields']['content']['element_type'] = 'p';
+$handler->display->display_options['fields']['content']['element_label_colon'] = FALSE;
+$handler->display->display_options['fields']['content']['hide_empty'] = TRUE;
+$handler->display->display_options['defaults']['filter_groups'] = FALSE;
+$handler->display->display_options['filter_groups']['groups'] = array(
+  1 => 'AND',
+  2 => 'OR',
+);
+$handler->display->display_options['defaults']['filters'] = FALSE;
+/* Filter criterion: AtoMConnector_General Notes: Language Options */
+$handler->display->display_options['filters']['culture']['id'] = 'culture';
+$handler->display->display_options['filters']['culture']['table'] = 'term_i18n';
+$handler->display->display_options['filters']['culture']['field'] = 'culture';
+$handler->display->display_options['filters']['culture']['value'] = 'en';
+$handler->display->display_options['filters']['culture']['group'] = 1;
+/* Filter criterion: AtoMConnector_General Notes: Note title */
+$handler->display->display_options['filters']['name']['id'] = 'name';
+$handler->display->display_options['filters']['name']['table'] = 'term_i18n';
+$handler->display->display_options['filters']['name']['field'] = 'name';
+$handler->display->display_options['filters']['name']['value'] = 'Accompanying material';
+$handler->display->display_options['filters']['name']['group'] = 2;
+/* Filter criterion: AtoMConnector_General Notes: Note title */
+$handler->display->display_options['filters']['name_1']['id'] = 'name_1';
+$handler->display->display_options['filters']['name_1']['table'] = 'term_i18n';
+$handler->display->display_options['filters']['name_1']['field'] = 'name';
+$handler->display->display_options['filters']['name_1']['value'] = 'Conservation';
+$handler->display->display_options['filters']['name_1']['group'] = 2;
+/* Filter criterion: AtoMConnector_General Notes: Note title */
+$handler->display->display_options['filters']['name_2']['id'] = 'name_2';
+$handler->display->display_options['filters']['name_2']['table'] = 'term_i18n';
+$handler->display->display_options['filters']['name_2']['field'] = 'name';
+$handler->display->display_options['filters']['name_2']['value'] = 'Physical description';
+$handler->display->display_options['filters']['name_2']['group'] = 2;
+/* Filter criterion: AtoMConnector_General Notes: Note title */
+$handler->display->display_options['filters']['name_3']['id'] = 'name_3';
+$handler->display->display_options['filters']['name_3']['table'] = 'term_i18n';
+$handler->display->display_options['filters']['name_3']['field'] = 'name';
+$handler->display->display_options['filters']['name_3']['value'] = 'Rights';
+$handler->display->display_options['filters']['name_3']['group'] = 2;
+
+/* Display: Language Note Field */
+$handler = $view->new_display('block', 'Language Note Field', 'block_4');
+$handler->display->display_options['defaults']['fields'] = FALSE;
+/* Field: AtoMConnector_General Notes: Note title */
+$handler->display->display_options['fields']['name']['id'] = 'name';
+$handler->display->display_options['fields']['name']['table'] = 'term_i18n';
+$handler->display->display_options['fields']['name']['field'] = 'name';
+$handler->display->display_options['fields']['name']['label'] = '';
+$handler->display->display_options['fields']['name']['alter']['nl2br'] = TRUE;
+$handler->display->display_options['fields']['name']['element_type'] = 'h3';
+$handler->display->display_options['fields']['name']['element_label_colon'] = FALSE;
+$handler->display->display_options['fields']['name']['hide_empty'] = TRUE;
+/* Field: AtoMConnector_General Notes: Note content */
+$handler->display->display_options['fields']['content']['id'] = 'content';
+$handler->display->display_options['fields']['content']['table'] = 'note_i18n';
+$handler->display->display_options['fields']['content']['field'] = 'content';
+$handler->display->display_options['fields']['content']['label'] = '';
+$handler->display->display_options['fields']['content']['alter']['nl2br'] = TRUE;
+$handler->display->display_options['fields']['content']['element_type'] = 'p';
+$handler->display->display_options['fields']['content']['element_label_colon'] = FALSE;
+$handler->display->display_options['fields']['content']['hide_empty'] = TRUE;
+$handler->display->display_options['defaults']['filter_groups'] = FALSE;
+$handler->display->display_options['defaults']['filters'] = FALSE;
+/* Filter criterion: AtoMConnector_General Notes: Language Options */
+$handler->display->display_options['filters']['culture']['id'] = 'culture';
+$handler->display->display_options['filters']['culture']['table'] = 'term_i18n';
+$handler->display->display_options['filters']['culture']['field'] = 'culture';
+$handler->display->display_options['filters']['culture']['value'] = 'en';
+/* Filter criterion: AtoMConnector_General Notes: Note title */
+$handler->display->display_options['filters']['name']['id'] = 'name';
+$handler->display->display_options['filters']['name']['table'] = 'term_i18n';
+$handler->display->display_options['filters']['name']['field'] = 'name';
+$handler->display->display_options['filters']['name']['value'] = 'Language note';
+
+/* Display: Title Notes fields */
+$handler = $view->new_display('block', 'Title Notes fields', 'block_5');
+$handler->display->display_options['defaults']['fields'] = FALSE;
+/* Field: AtoMConnector_General Notes: Note title */
+$handler->display->display_options['fields']['name']['id'] = 'name';
+$handler->display->display_options['fields']['name']['table'] = 'term_i18n';
+$handler->display->display_options['fields']['name']['field'] = 'name';
+$handler->display->display_options['fields']['name']['label'] = '';
+$handler->display->display_options['fields']['name']['alter']['text'] = '[name]:';
+$handler->display->display_options['fields']['name']['alter']['nl2br'] = TRUE;
+$handler->display->display_options['fields']['name']['element_type'] = 'h3';
+$handler->display->display_options['fields']['name']['element_label_colon'] = FALSE;
+$handler->display->display_options['fields']['name']['hide_empty'] = TRUE;
+/* Field: AtoMConnector_General Notes: Note content */
+$handler->display->display_options['fields']['content']['id'] = 'content';
+$handler->display->display_options['fields']['content']['table'] = 'note_i18n';
+$handler->display->display_options['fields']['content']['field'] = 'content';
+$handler->display->display_options['fields']['content']['label'] = '';
+$handler->display->display_options['fields']['content']['alter']['nl2br'] = TRUE;
+$handler->display->display_options['fields']['content']['element_type'] = 'p';
+$handler->display->display_options['fields']['content']['element_label_colon'] = FALSE;
+$handler->display->display_options['fields']['content']['hide_empty'] = TRUE;
+$handler->display->display_options['defaults']['filter_groups'] = FALSE;
+$handler->display->display_options['filter_groups']['groups'] = array(
+  1 => 'AND',
+  2 => 'OR',
+);
+$handler->display->display_options['defaults']['filters'] = FALSE;
+/* Filter criterion: AtoMConnector_General Notes: Language Options */
+$handler->display->display_options['filters']['culture']['id'] = 'culture';
+$handler->display->display_options['filters']['culture']['table'] = 'term_i18n';
+$handler->display->display_options['filters']['culture']['field'] = 'culture';
+$handler->display->display_options['filters']['culture']['value'] = 'en';
+$handler->display->display_options['filters']['culture']['group'] = 1;
+/* Filter criterion: AtoMConnector_General Notes: Note title */
+$handler->display->display_options['filters']['name']['id'] = 'name';
+$handler->display->display_options['filters']['name']['table'] = 'term_i18n';
+$handler->display->display_options['filters']['name']['field'] = 'name';
+$handler->display->display_options['filters']['name']['value'] = 'Source of title proper';
+$handler->display->display_options['filters']['name']['group'] = 2;
+/* Filter criterion: AtoMConnector_General Notes: Note title */
+$handler->display->display_options['filters']['name_1']['id'] = 'name_1';
+$handler->display->display_options['filters']['name_1']['table'] = 'term_i18n';
+$handler->display->display_options['filters']['name_1']['field'] = 'name';
+$handler->display->display_options['filters']['name_1']['value'] = 'Attributions and conjectures';
+$handler->display->display_options['filters']['name_1']['group'] = 2;
+/* Filter criterion: AtoMConnector_General Notes: Note title */
+$handler->display->display_options['filters']['name_2']['id'] = 'name_2';
+$handler->display->display_options['filters']['name_2']['table'] = 'term_i18n';
+$handler->display->display_options['filters']['name_2']['field'] = 'name';
+$handler->display->display_options['filters']['name_2']['value'] = 'Continuation of title';
+$handler->display->display_options['filters']['name_2']['group'] = 2;
+/* Filter criterion: AtoMConnector_General Notes: Note title */
+$handler->display->display_options['filters']['name_3']['id'] = 'name_3';
+$handler->display->display_options['filters']['name_3']['table'] = 'term_i18n';
+$handler->display->display_options['filters']['name_3']['field'] = 'name';
+$handler->display->display_options['filters']['name_3']['value'] = 'Parallel titles and other title information';
+$handler->display->display_options['filters']['name_3']['group'] = 2;
+/* Filter criterion: AtoMConnector_General Notes: Note title */
+$handler->display->display_options['filters']['name_4']['id'] = 'name_4';
+$handler->display->display_options['filters']['name_4']['table'] = 'term_i18n';
+$handler->display->display_options['filters']['name_4']['field'] = 'name';
+$handler->display->display_options['filters']['name_4']['value'] = 'Statements of responsibility';
+$handler->display->display_options['filters']['name_4']['group'] = 2;
+/* Filter criterion: AtoMConnector_General Notes: Note title */
+$handler->display->display_options['filters']['name_5']['id'] = 'name_5';
+$handler->display->display_options['filters']['name_5']['table'] = 'term_i18n';
+$handler->display->display_options['filters']['name_5']['field'] = 'name';
+$handler->display->display_options['filters']['name_5']['value'] = 'Variations in title';
+$handler->display->display_options['filters']['name_5']['group'] = 2;

@@ -64,3 +64,22 @@ Properties and notes has a lot.  Language of material is under properties for ex
 
 For the relations you have to set them internally as views linking views.  If you build the relationships into the connector directly then you lose a lot of the styling options.  Thus I have created a few connection endpoint view types.  Use view connector and pass the id as the contextual filter, then the property, notes, etc... type can pull those fields.  You can filter by type, such as type=alternativeidentifier to get the alternative identifiers.
 
+
+Language
+-------------
+It is possible to add properties like language.  However they take some processing because they are represtented as iso codes.
+
+<?php
+
+//sudo apt-get install php-intl
+
+preg_match_all ('/".*?"/','{i:0;s:2:"en";i:1;s:2:"fr";}',$output);
+
+$returnVar = "";
+
+foreach ($output[0] as $language) {
+  $returnVar .= locale_get_display_language(substr($language,1,-1), 'en') . ", ";
+}
+
+print substr($returnVar,0,-2).".";                                                                                         
+?>
